@@ -6,6 +6,14 @@ client/tests/e2e/videos/
 client/tests/e2e/screenshots/
 
 
+/server/dist
+
+
+server/tests/e2e/videos/
+server/tests/e2e/screenshots/
+
+
+
 # local env files
 .env.local
 .env.*.local
