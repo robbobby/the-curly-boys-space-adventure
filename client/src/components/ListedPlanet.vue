@@ -1,6 +1,6 @@
 <template>
   <div class="listed-planet">
-      <p v-on:click="handleClick" v-if="planet.isPlanet"> {{planet.englishName}} </p>
+      <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1"> {{planet.englishName}} </p>
   </div>
 </template>
 
