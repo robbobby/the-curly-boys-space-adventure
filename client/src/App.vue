@@ -2,7 +2,7 @@
   <div id="app">
     <div class="nav">
       <h1>List of Planets!</h1>
-      <planet-list></planet-list>
+      <planet-list :planets="planets"></planet-list>
 
       <!-- // here we are displaying planets -->
     </div>
@@ -23,11 +23,13 @@ export default {
   data(){
     return {
       planets: [],
-      selectedPlanet: null
+      moons: [],
+      selectedPlanet: null,
+      planetTemp: []
     }
   },
   mounted(){
-    this.getPlanets();
+    this.getPlanets()
     eventBus.$on('planet-selected', planet => (this.selectedPlanet = planet));
   },
 
@@ -36,6 +38,18 @@ export default {
       fetch('https://api.le-systeme-solaire.net/rest/bodies/')
       .then(res => res.json())
       .then(planets => this.planets = planets.bodies)
+      // .then(planets => this.planetTemp = planets.bodies)
+      // .then(() => {
+      //   if(this.planetTemp.length) {
+      //     for (body in this.planetTemp){
+      //       if (body.isPlanet) {
+      //         this.planets.push(body)
+      //       }
+      //       else {
+      //         this.moons.push(body);
+      //     }
+      //   }}
+      // });
     }
   }
   
@@ -50,32 +64,21 @@ export default {
 
 
 
+<style>
 
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: white;
+  padding: 30px;
+  margin: 0;
+  background-color: #2c3e50;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 0px 0 0;
 }
 ul {
   list-style-type: none;
