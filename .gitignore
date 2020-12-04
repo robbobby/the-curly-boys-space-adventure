@@ -4,6 +4,7 @@ node_modules
 
 client/tests/e2e/videos/
 client/tests/e2e/screenshots/
+client/src/assets/dbLogin.js
 
 
 /server/dist
