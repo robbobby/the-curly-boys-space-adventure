@@ -3,6 +3,7 @@
     <div class="nav">
       <h1>List of Planets!</h1>
       <planet-list :planets="planets"></planet-list>
+      <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
 
       <!-- // here we are displaying planets -->
     </div>
@@ -12,20 +13,24 @@
 <script>
 import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
+import PlanetDetail from './components/PlanetDetail.vue'
+import MoonList from './components/MoonList.vue'
 
 import { eventBus } from '@/main.js'
+
 
 export default {
   name: 'App',
   components: {
     'planet-list': PlanetList,
+    'moon-list': MoonList,
+    'planet-detail': PlanetDetail,
   },
   data(){
     return {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      planetTemp: []
     }
   },
   mounted(){
@@ -35,21 +40,30 @@ export default {
 
   methods: {
     getPlanets: function(){
+      let planetTemp = []
       fetch('https://api.le-systeme-solaire.net/rest/bodies/')
       .then(res => res.json())
-      .then(planets => this.planets = planets.bodies)
-      // .then(planets => this.planetTemp = planets.bodies)
-      // .then(() => {
-      //   if(this.planetTemp.length) {
-      //     for (body in this.planetTemp){
-      //       if (body.isPlanet) {
-      //         this.planets.push(body)
-      //       }
-      //       else {
-      //         this.moons.push(body);
-      //     }
-      //   }}
-      // });
+      // .then(planets => planets = planets.bodies)
+      .then(planets => planetTemp = planets.bodies)
+      .then(() => {
+        if(planetTemp.length) {
+          for (let body of planetTemp){
+            if (body.isPlanet) {
+              this.planets.push(body)
+            }
+            else {
+              this.moons.push(body);
+          }
+        }}
+      });
+    },
+    getMoons: function(){
+      // check for each selectedplanets.moons
+      // check the rel
+      //compare it to (planet) moons.rel
+      return this.planets.filter((planet) => {
+        return this.selectedPlanet.moons.includes(planet.rel);
+      })
     }
   }
   
