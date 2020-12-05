@@ -57,40 +57,16 @@ export default {
       });
     },
     getMoons: function(){
-      let planetsRel = this.selectedPlanet.moons.map(o => o.rel); //e planetsRel with links to the moons
-      // return this.moons.filter((moon) => {
-      //   return planetsRel });
-        // .includes(moonOfPlanet => moonOfPlanet.rel === moon.rel ? moon : null )
-      // let allMoonsRel = this.moons.map(moon => moon.rel)
-      // let selectedRel = allMoonsRel.includes(moonRel => {
-      //   return planetsRel
-      // })
-
-        // let englishMoon = this.moons.map(moon => moon.rel).includes(planetsRel => {
-      //   .filter(moon => moon.rel === planetsRel);
-        // return allMoonsRel
-
-        let moonList = []
-        for (let i = 0; i < this.selectedPlanet.moons.length; i++) {
-          for (let j = 0; j < this.moons; j++) {
-            if (planetsRel[i] === this.moons[j].rel) {
-              moonList.push(this.moons[j]);
-            }
-          }
-        }
-        return moonList;
+      if (this.selectedPlanet.moons) {
+      let planetsRel = this.selectedPlanet.moons.map(planetsMoon => planetsMoon.rel); 
+      return this.moons.filter(function(moon){
+        return planetsRel.indexOf(moon.rel) != -1
+        });
       }
-    }
       
-
-      // return this.selectedPlanet.moons.map(moon => moon.rel)
-
-      // if(this.selectedPlanet.moons){
-      // return this.moons.filter((moon) => {
-      //   return this.selectedPlanet.moons
-      //   });
-      // }
     }
+  }   
+}
 
 
 </script>
