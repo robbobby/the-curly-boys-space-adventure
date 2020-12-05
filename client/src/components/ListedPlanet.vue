@@ -2,11 +2,11 @@
     <div class="list-wrapper">
         
         <div class="listed-planet">
-            <!-- <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}</p> -->
+            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}
                 
-            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :id="planet.englishName">
-                <img :src="'/client/src/assets/joopiteer.png'" title="picture" alt="picture of chosen planet">
-                <!-- <img v-bind:src="require(`../assets/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet"> -->
+            <!-- <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :id="planet.englishName"> -->
+                <!-- <img :src="'/client/src/assets/joopiteer.png'" title="picture" alt="picture of chosen planet"> -->
+                <img v-bind:src="require(`../assets/images/planets/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet">
             </p>
 
 
