@@ -2,8 +2,13 @@
     <div class="list-wrapper">
         
         <div class="listed-planet">
-            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}</p>
-        
+            <!-- <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}</p> -->
+            
+            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :id="planet.englishName">
+                <img :src="'/client/src/assets/joopiteer.png'" title="picture" alt="picture of chosen planet">
+            </p>
+
+
       <!-- <img :src="require(`../assets/images/planets/${planet.englishName.toLowerCase()}.png`)" :alt="Planet pic"> -->
 
         <!-- :src="@/client/src/assets/images/planets/mars.png" -->
@@ -44,6 +49,11 @@ p {
     flex-direction: row;
     justify-content:space-between;
 }
+
+/* #Venus {
+    background-image: url('../src/assets/images/planets/venus.png');
+
+}  */
 /* {
 "id": "lune",
 "englishName": "Moon",
