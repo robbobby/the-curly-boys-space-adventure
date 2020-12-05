@@ -9,7 +9,6 @@
       <!-- // here we are displaying planets -->
     </div>
   </div>
-  </div>
 </template>
 
 <script>
