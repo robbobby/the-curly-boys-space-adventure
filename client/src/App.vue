@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <h1>List of Planets!</h1>
+      <h1>Cosmodex</h1>
+      <h4>By {The Curly Boys}</h4>
+      <div class="nav">
+      
       <planet-list :planets="planets"></planet-list>
 
       <!-- // here we are displaying planets -->
     </div>
+  </div>
   </div>
 </template>
 
@@ -65,30 +68,91 @@ export default {
 
 
 <style>
+h1 {
+  align-content: center;
+}
+
+h4 {
+  
+  border: 0;
+  margin: 0;
+  padding-top: 5px;
+  margin-left: 40px;
+  top: -25px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  color: white;
+  font-size: 20px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+  background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+/* } //  background-image: url("paper.gif"); */
+
+h1 {
+  position: relative;
+  border: 0;
+  margin: 0;
+  margin-top: 30px;
+  margin-left: 30px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  color: white;
+  font-size: 100px;
+  
+}
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
-  padding: 30px;
   margin: 0;
-  background-color: #2c3e50;
+  padding: 0;
+  border: 0;
+  /* display: flex; */
+  /* flex-direction: row;
+  align-items: center; */
+  width:90%;
+  height: 100%;
+  margin:auto;
 }
 
-h3 {
-  margin: 0px 0 0;
-}
-ul {
-  list-style-type: none;
+.nav {
+  margin: 0;
+  margin-top: 100px;
+  margin-left: 5%;
+  border: 0;
   padding: 0;
+  width: 90%;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  
+  
 }
-li {
-  display: inline-block;
-  margin: 0 10px; 
+  
+
+#planet-list {
+  display: flex;
+    flex-direction: row;
+      position: relative;
+        justify-content: center;
 }
-a {
-  color: #42b983;
-}
+  
 </style>

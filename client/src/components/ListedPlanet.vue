@@ -1,7 +1,15 @@
 <template>
-  <div class="listed-planet">
-      <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1"> {{planet.englishName}} </p>
-  </div>
+    <div class="list-wrapper">
+        
+        <div class="listed-planet">
+            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}</p>
+        
+      <!-- <img :src="require(`../assets/images/planets/${planet.englishName.toLowerCase()}.png`)" :alt="Planet pic"> -->
+
+        <!-- :src="@/client/src/assets/images/planets/mars.png" -->
+      <!-- <img src="{{ url_for('static', filename='images/{}.jpeg'.format(album.title)) }}" alt="Picture of album cover"> -->
+        </div>
+    </div>
 </template>
 
 <script>
@@ -19,6 +27,23 @@ export default {
 </script>
 
 <style>
+
+.planet-list{
+
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+
+}
+
+p {
+    color: white;
+    margin: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
 /* {
 "id": "lune",
 "englishName": "Moon",
