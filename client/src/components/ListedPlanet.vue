@@ -3,7 +3,7 @@
         
         <div class="listed-planet">
             <!-- <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}</p> -->
-            
+                
             <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :id="planet.englishName">
                 <img :src="'/client/src/assets/joopiteer.png'" title="picture" alt="picture of chosen planet">
             </p>
