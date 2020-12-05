@@ -43,12 +43,11 @@ export default {
       let planetTemp = []
       fetch('https://api.le-systeme-solaire.net/rest/bodies/')
       .then(res => res.json())
-      // .then(planets => planets = planets.bodies)
       .then(planets => planetTemp = planets.bodies)
       .then(() => {
         if(planetTemp.length) {
           for (let body of planetTemp){
-            if (body.isPlanet) {
+            if (body.isPlanet && body.gravity >=1) {
               this.planets.push(body)
             }
             else {
@@ -58,16 +57,42 @@ export default {
       });
     },
     getMoons: function(){
-      // check for each selectedplanets.moons
-      // check the rel
-      //compare it to (planet) moons.rel
-      return this.planets.filter((planet) => {
-        return this.selectedPlanet.moons.includes(planet.rel);
-      })
+      let planetsRel = this.selectedPlanet.moons.map(o => o.rel); //e planetsRel with links to the moons
+      // return this.moons.filter((moon) => {
+      //   return planetsRel });
+        // .includes(moonOfPlanet => moonOfPlanet.rel === moon.rel ? moon : null )
+      // let allMoonsRel = this.moons.map(moon => moon.rel)
+      // let selectedRel = allMoonsRel.includes(moonRel => {
+      //   return planetsRel
+      // })
+
+        // let englishMoon = this.moons.map(moon => moon.rel).includes(planetsRel => {
+      //   .filter(moon => moon.rel === planetsRel);
+        // return allMoonsRel
+
+        let moonList = []
+        for (let i = 0; i < this.selectedPlanet.moons.length; i++) {
+          for (let j = 0; j < this.moons; j++) {
+            if (planetsRel[i] === this.moons[j].rel) {
+              moonList.push(this.moons[j]);
+            }
+          }
+        }
+        return moonList;
+      }
     }
-  }
-  
-}
+      
+
+      // return this.selectedPlanet.moons.map(moon => moon.rel)
+
+      // if(this.selectedPlanet.moons){
+      // return this.moons.filter((moon) => {
+      //   return this.selectedPlanet.moons
+      //   });
+      // }
+    }
+
+
 </script>
 
 

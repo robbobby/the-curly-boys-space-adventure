@@ -2,8 +2,8 @@
     <div>
         <h3>Moons:</h3>
         <ul>
-            <li v-for="moon in getMoons">
-                <p> {{moon.englishName}} </p>
+            <li v-for="(moon, index) in getMoons" :key="index">
+                <p> {{moon}} </p>
             </li>
         </ul>
     </div>

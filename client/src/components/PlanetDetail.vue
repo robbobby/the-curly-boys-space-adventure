@@ -1,7 +1,7 @@
 <template>
     <div id="selected-planet" v-if="planet">
         <h2> {{planet.englishName}} </h2>
-        <moon-list v-if="getMoons.length" :getMoons="getMoons"></moon-list>
+        <moon-list v-if="getMoons" :getMoons="getMoons"></moon-list>
         <!-- <div v-if="planet.moons">
             <p v-for="(moon, index) in moons" :key="index"> {{moon.rel}} </p>
         </div> -->
