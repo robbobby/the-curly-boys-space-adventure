@@ -43,13 +43,14 @@ export default {
 
 
 .listed-planet > a > img{
-    width: 102%;
+    width: 80%;
+    max-width: 80%;
     opacity: 80%;
     transition-duration: 0.75s;
 }
 .listed-planet > a > img:hover{
     transition-timing-function: ease;
-    transform: scale(1.5, 1.5);
+    transform: scale(2.5, 2.5);
     opacity: 100%;
 }
 
@@ -89,11 +90,11 @@ export default {
     visibility: hidden;
 }
 
-#Saturn > img {
+/* #Saturn > img {
     position: relative;
     width: 250%;
     left: -50px;
-} 
+}  */
 
 
 /* #Venus {

@@ -1,7 +1,7 @@
 <template>
     <!-- this should consider the format of each item to be displayed -->
     <div class="planet-list" v-if="planets.length">
-        <listed-planet v-for="(planet, index) in planets" :planet="planet" :key="index"></listed-planet>
+        <listed-planet v-for="(planet, index) in sortByDistance" :planet="planet" :key="index"></listed-planet>
     </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
     props: ['planets'],
     components: {
         'listed-planet': ListedPlanet
+    },
+    computed: {
+        sortByDistance: function(){
+            return this.planets.sort((a, b) => a.semimajorAxis - b.semimajorAxis );
+        }
     }
 };
 </script>

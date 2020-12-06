@@ -87,6 +87,7 @@ h1 {
   align-content: center;
   font-family: 'Gugi', cursive;
   text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  
 
 
   -webkit-text-fill-color: transparent;
