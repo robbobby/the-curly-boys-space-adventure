@@ -50,7 +50,10 @@ export default {
     border-radius: 6px;
 
 }
+/* #selected-planet p {
+    overflow: hidden;
 
+} */
 
 
 

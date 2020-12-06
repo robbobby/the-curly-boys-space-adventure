@@ -86,11 +86,18 @@ export default {
 h1 {
   align-content: center;
   font-family: 'Gugi', cursive;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+
+
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(60deg, blue, white);
 
 }
 
 h4 {
-  
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
   border: 0;
   margin: 0;
   padding-top: 5px;
@@ -101,6 +108,10 @@ h4 {
   align-content: top;
   color: white;
   font-size: 20px;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(100deg, blue, white);
 }
 
 html {

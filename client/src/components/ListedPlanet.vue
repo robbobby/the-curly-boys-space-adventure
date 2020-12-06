@@ -3,13 +3,13 @@
         
         <div class="listed-planet">
 
-            <p v-on:click="handleClick" :id="planet.englishName">
+            <a v-on:click="handleClick" :id="planet.englishName">
                 <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
-                :title="`${planet.englishName}`" alt="picture of chosen planet" :height="`${widthOfImage}`"/>
+                :title="`${planet.englishName}`" alt="picture of chosen planet" 
+                    :width="setWidthOfPlanetImage()"/>
                 <p> {{planet.englishName}} </p>
-            </p>
-            <!-- 50 + (5 * planet.averageRadius) -> assign that to the width/height of the image -->
-
+                <p> {{setWidthOfPlanetImage()}} </p>
+            </a>
         </div>
     </div>
 </template>
@@ -20,21 +20,20 @@ import {eventBus} from '@/main.js';
 export default {
     name: 'listed-planet',
     props: ['planet'],
-    widthOfImage: 70,
+    data() {
+        return {
+            widthOfImage: 70,
+        }
+    },
     methods: {
+        
         handleClick: function(){
             eventBus.$emit('planet-selected', this.planet);
         },
-        data() {
-            return {
-            }
-        }
-    },
-    mounted: {
         setWidthOfPlanetImage() {
-            this.widthOfImage = (50 + (5 * planet.meanRadius)) + 'px'
-            console.log(this.widthOfImage);
-        }
+            let number = (50 + (5 * this.planet.meanRadius)) / 5000 + 100 
+            return number + 'px';
+        },
     }
 }
 </script>
@@ -43,18 +42,18 @@ export default {
 
 
 
-.listed-planet > p > img{
-    max-width: 120%;
+.listed-planet > a > img{
+    width: 102%;
     opacity: 80%;
     transition-duration: 0.75s;
 }
-.listed-planet > p > img:hover{
+.listed-planet > a > img:hover{
     transition-timing-function: ease;
     transform: scale(1.5, 1.5);
     opacity: 100%;
 }
 
-/* .listed-planet > p > img:active{
+/* .listed-planet > a > img:active{
     animation
 } */
 /* 
@@ -62,7 +61,7 @@ export default {
     from {image-: red;}
     to {background-color: yellow;} */
 
-    /* .listed-planet > p > img {
+    /* .listed-planet > a > img {
     
     animation-name: size forwards;
     animation-duration: 4s;
@@ -73,10 +72,11 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
+    align-items: baseline;
 
 }
 
-p {
+.listed-planet {
     color: white;
     margin: 20px;
     font-size: 20px;
@@ -88,6 +88,12 @@ p {
 #Earth:onClick {
     visibility: hidden;
 }
+
+#Saturn > img {
+    position: relative;
+    width: 250%;
+    left: -50px;
+} 
 
 
 /* #Venus {
