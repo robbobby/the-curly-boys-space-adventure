@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <h1>List of Planets!</h1>
-      <planet-list :planets="planets"></planet-list>
-      <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
-
+      <h1>Cosmodex</h1>
+      <h4>By {The Curly Boys}</h4>
+      <div class="main-menu">
+        <button v-on:click="showPlanets = !showPlanets">PLANETS</button>
+      </div>
+      <div class="planet-list">
+        <planet-list :planets="planets" v-show="showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
-    </div>
+      </div>
+      <div>
+        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" 
+        :getMoons="getMoons()" v-show="showPlanets"></planet-detail>
+      </div>
   </div>
 </template>
 
@@ -31,11 +37,12 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
+      showPlanets: false
     }
   },
   mounted(){
     this.getPlanets()
-    eventBus.$on('planet-selected', planet => (this.selectedPlanet = planet));
+    eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
   },
 
   methods: {
@@ -50,7 +57,7 @@ export default {
             if (body.isPlanet && body.gravity >=1) {
               this.planets.push(body)
             }
-            else {
+            else if (!body.isPlanet) {
               this.moons.push(body);
           }
         }}
@@ -81,30 +88,99 @@ export default {
 
 
 <style>
+h1 {
+  align-content: center;
+  font-family: 'Gugi', cursive;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  
+
+
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(60deg, blue, white);
+
+}
+
+h4 {
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  border: 0;
+  margin: 0;
+  padding-top: 5px;
+  margin-left: 40px;
+  top: -25px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  color: white;
+  font-size: 20px;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(100deg, blue, white);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+  background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+/* } //  background-image: url("paper.gif"); */
+
+h1 {
+  position: relative;
+  border: 0;
+  margin: 0;
+  margin-top: 30px;
+  margin-left: 30px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  color: white;
+  font-size: 100px;
+  
+}
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
-  padding: 30px;
   margin: 0;
-  background-color: #2c3e50;
+  padding: 0;
+  border: 0;
+  /* display: flex; */
+  /* flex-direction: row;
+  align-items: center; */
+  width:90%;
+  height: 100%;
+  margin:auto;
 }
 
-h3 {
-  margin: 0px 0 0;
-}
-ul {
-  list-style-type: none;
+.planet-list {
+  margin: 0;
+  margin-top: 40px;
+  margin-left: 5%;
+  border: 0;
   padding: 0;
+  width: 90%;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  
+  
 }
-li {
-  display: inline-block;
-  margin: 0 10px; 
-}
-a {
-  color: #42b983;
-}
+  
 </style>
