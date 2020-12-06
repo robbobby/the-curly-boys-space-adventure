@@ -2,18 +2,14 @@
     <div class="list-wrapper">
         
         <div class="listed-planet">
-            <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :class="planet.englishName" > {{planet.englishName}}
-                
-            <!-- <p v-on:click="handleClick" v-if="planet.isPlanet & planet.gravity >=1" :id="planet.englishName"> -->
-                <!-- <img :src="'/client/src/assets/joopiteer.png'" title="picture" alt="picture of chosen planet"> -->
-                <img v-bind:src="require(`../assets/images/planets/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet">
+
+            <p v-on:click="handleClick" :id="planet.englishName">
+                <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
+                :title="`${planet.englishName}`" alt="picture of chosen planet" :height="`${widthOfImage}`"/>
+                <p> {{planet.englishName}} </p>
             </p>
+            <!-- 50 + (5 * planet.averageRadius) -> assign that to the width/height of the image -->
 
-
-      <!-- <img :src="require(`../assets/images/planets/${planet.englishName.toLowerCase()}.png`)" :alt="Planet pic"> -->
-
-        <!-- :src="@/client/src/assets/images/planets/mars.png" -->
-      <!-- <img src="{{ url_for('static', filename='images/{}.jpeg'.format(album.title)) }}" alt="Picture of album cover"> -->
         </div>
     </div>
 </template>
@@ -24,15 +20,53 @@ import {eventBus} from '@/main.js';
 export default {
     name: 'listed-planet',
     props: ['planet'],
+    widthOfImage: 70,
     methods: {
         handleClick: function(){
             eventBus.$emit('planet-selected', this.planet);
+        },
+        data() {
+            return {
+            }
+        }
+    },
+    mounted: {
+        setWidthOfPlanetImage() {
+            this.widthOfImage = (50 + (5 * planet.meanRadius)) + 'px'
+            console.log(this.widthOfImage);
         }
     }
 }
 </script>
 
 <style>
+
+
+
+.listed-planet > p > img{
+    max-width: 120%;
+    opacity: 80%;
+    transition-duration: 0.75s;
+}
+.listed-planet > p > img:hover{
+    transition-timing-function: ease;
+    transform: scale(1.5, 1.5);
+    opacity: 100%;
+}
+
+/* .listed-planet > p > img:active{
+    animation
+} */
+/* 
+@keyframes size {
+    from {image-: red;}
+    to {background-color: yellow;} */
+
+    /* .listed-planet > p > img {
+    
+    animation-name: size forwards;
+    animation-duration: 4s;
+} */
 
 .planet-list{
 
@@ -50,6 +84,11 @@ p {
     flex-direction: row;
     justify-content:space-between;
 }
+
+#Earth:onClick {
+    visibility: hidden;
+}
+
 
 /* #Venus {
     background-image: url('../src/assets/images/planets/venus.png');
@@ -83,4 +122,3 @@ p {
 "rel": "https://api.le-systeme-solaire.net/rest/bodies/lune"
 }, */
 </style>
-

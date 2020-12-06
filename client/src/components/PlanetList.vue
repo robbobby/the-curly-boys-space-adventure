@@ -19,9 +19,11 @@ export default {
 
 <style>
 
-#planet-list {
+
+
+/* .planet-list {
     display: flex;
-    flex-direction: row;
-}
+    flex-direction: column;
+} */
 
 </style>

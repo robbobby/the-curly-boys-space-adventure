@@ -3,12 +3,12 @@
       <h1>Cosmodex</h1>
       <h4>By {The Curly Boys}</h4>
       <div class="nav">
-      
       <planet-list :planets="planets"></planet-list>
-      <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
-
       <!-- // here we are displaying planets -->
-    </div>
+      </div>
+      <div>
+        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
+      </div>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
   },
   mounted(){
     this.getPlanets()
-    eventBus.$on('planet-selected', planet => (this.selectedPlanet = planet));
+    eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
   },
 
   methods: {
@@ -85,6 +85,8 @@ export default {
 <style>
 h1 {
   align-content: center;
+  font-family: 'Gugi', cursive;
+
 }
 
 h4 {
@@ -106,6 +108,7 @@ html {
 }
 
 body {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   border: 0;
   padding: 0;
@@ -114,6 +117,7 @@ body {
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -148,7 +152,7 @@ h1 {
 
 .nav {
   margin: 0;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-left: 5%;
   border: 0;
   padding: 0;
