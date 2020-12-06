@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h3>Moons:</h3>
-        <ul>
+        <h3 v-on:click="showMoons = !showMoons">Moons:</h3>
+        <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons" :key="index">
                 <p> {{moon.englishName}} </p>
             </li>
@@ -12,7 +12,12 @@
 <script>
 export default {
     name: 'moon-list',
-    props: ['getMoons']
+    props: ['getMoons'],
+    data(){
+        return {
+            showMoons: false
+        }
+    }
 }
 </script>
 
