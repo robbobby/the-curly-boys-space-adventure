@@ -46,7 +46,7 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      descriptions: []
+      descriptions: [],
       show: null,
       showPlanets: true,
       showAnimation: false,
