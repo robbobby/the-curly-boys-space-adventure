@@ -3,10 +3,14 @@
         <div class="planet-container">
             <div>
                 <h2>Planet {{planet.englishName}} </h2>
+
+                
                 <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" />
             </div>
             <div id="listed-planet-details">
-                <p style="color:red;">This will be the planet description</p>
+                <div v-for="(body, index) in descriptions" :key="index">
+                <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
+                </div>
                 <h3>Specification:</h3>
                 <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} km</p>
                 <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} miles </p>
@@ -27,17 +31,21 @@
 
 <script>
 import MoonList from './MoonList.vue'
+import PlanetDescriptionList from './PlanetDescriptionList.vue'
+
+
 
 export default {
     name: 'planet-detail',
-    props: ['planet', 'getMoons'],
+    props: ['planet', 'getMoons', 'moons', 'descriptions'],
     data() {
         return {
             convertDistance: true
         }
     },
     components: {
-        'moon-list': MoonList
+        'moon-list': MoonList,
+        'planet-description-list': PlanetDescriptionList
     },
     methods: {
         milesConvertor: function(number){
@@ -65,8 +73,13 @@ export default {
 
 #listed-planet-details {
     margin-left: 30px;
+<<<<<<< HEAD
     margin-top: 10px;
     width: 400px;
+=======
+    margin-top: 50px;
+    width: 500px;
+>>>>>>> fed211f0421d491ec43cf7070018484e745a948a
 }
 .planet-container {
     display: flex;
