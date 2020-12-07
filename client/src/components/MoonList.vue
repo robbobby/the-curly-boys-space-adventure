@@ -2,7 +2,7 @@
     <div id="moons-display">
         <h3 v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):</h3>
         <ul v-show="showMoons">
-            <li v-for="(moon, index) in getMoons" :key="index">
+            <li v-for="(moon, index) in getMoons"  v-on:click="moonSelected(moon)" :key="index">
                 <p> {{moon.englishName}} </p>
             </li>
         </ul>
@@ -10,19 +10,26 @@
 </template>
 
 <script>
+import {eventBus} from '@/main';
+
 export default {
-    name: 'moon-list',
-    props: ['getMoons'],
-    data(){
-        return {
-            showMoons: false
-        }
-    },
-    methods: {
-        numberOfMoons: function(){
-            return Object.keys(this.getMoons).length
-        }
+  name: 'moon-list',
+  props: ['getMoons'],
+  data() {
+    return {
+      showMoons: false,
+      showMoonDetail: false,
+      selectedMoon: ''
     }
+  },
+  methods: {
+    numberOfMoons: function () {
+      return Object.keys(this.getMoons).length
+    },
+    moonSelected: function (moon) {
+      eventBus.$emit('moon-selected', moon)
+    }
+  }
 }
 </script>
 
