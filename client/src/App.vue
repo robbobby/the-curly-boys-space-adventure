@@ -4,6 +4,10 @@
       <h4>By {The Curly Boys}</h4>
       <div class="main-menu">
         <button v-on:click="showPlanets = !showPlanets">PLANETS</button>
+        <button v-on:click="showAnimation = !showAnimation">ANIMATION</button>
+      </div>
+      <div class="planet-animation">
+        <planet-animation :planets="planets" v-show="showAnimation"></planet-animation>
       </div>
       <div class="planet-list">
         <planet-list :planets="planets" v-show="showPlanets"></planet-list>
@@ -17,6 +21,7 @@
 </template>
 
 <script>
+import PlanetAnimation from './components/PlanetAnimation.vue'
 import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
@@ -31,13 +36,15 @@ export default {
     'planet-list': PlanetList,
     'moon-list': MoonList,
     'planet-detail': PlanetDetail,
+    'planet-animation': PlanetAnimation,
   },
   data(){
     return {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      showPlanets: false
+      showPlanets: false,
+      showAnimation: true
     }
   },
   mounted(){
