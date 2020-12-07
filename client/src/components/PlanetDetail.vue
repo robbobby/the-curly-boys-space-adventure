@@ -65,7 +65,7 @@ export default {
 
 #listed-planet-details {
     margin-left: 30px;
-    margin-top: 50px;
+    margin-top: 10px;
     width: 400px;
 }
 .planet-container {
