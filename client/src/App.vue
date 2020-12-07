@@ -7,7 +7,7 @@
       <!-- // here we are displaying planets -->
       </div>
       <div>
-        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
+        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions"></planet-detail>
       </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
-
+import HubbleServices from './services/HubbleServices.js'
 import { eventBus } from '@/main.js'
 
 
@@ -33,11 +33,12 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      description: []
+      descriptions: []
     }
   },
   mounted(){
-    this.getPlanets()
+    this.getPlanets();
+    this.getDescriptions();
     eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
   },
 
@@ -65,17 +66,17 @@ export default {
       return this.moons.filter(function(moon){
         return planetsRel.indexOf(moon.rel) != -1
         });
+        console.log(this.description);
       }
       
     },
 
-    getDescription: function(){
-      fetch('https://localhost:3000/hubble-data')
-      .then(res => res.json())
-      .then(data => this.description = data)
+    getDescriptions: function(){
+      HubbleServices.getDescriptions()
+      
+      .then(data => this.descriptions = data)
 
     }
-    
   }   
 }
 

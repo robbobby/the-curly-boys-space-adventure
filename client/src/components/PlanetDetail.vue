@@ -1,6 +1,9 @@
 <template>
     <div id="selected-planet" v-if="planet">
         <h2>Planet: {{planet.englishName}} </h2>
+        <div v-for="(body, index) in descriptions" :key="index">
+        <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
+        </div>
         <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" />
         <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} km</p>
         <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} miles </p>
@@ -18,17 +21,21 @@
 
 <script>
 import MoonList from './MoonList.vue'
+import PlanetDescriptionList from './PlanetDescriptionList.vue'
+
+
 
 export default {
     name: 'planet-detail',
-    props: ['planet', 'getMoons'],
+    props: ['planet', 'getMoons', 'moons', 'descriptions'],
     data() {
         return {
             convertDistance: true
         }
     },
     components: {
-        'moon-list': MoonList
+        'moon-list': MoonList,
+        'planet-description-list': PlanetDescriptionList
     },
     methods: {
         milesConvertor: function(number){
