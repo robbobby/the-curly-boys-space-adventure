@@ -33,6 +33,7 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
+      description: []
     }
   },
   mounted(){
@@ -67,6 +68,13 @@ export default {
       }
       
     },
+
+    getDescription: function(){
+      fetch('https://localhost:3000/hubble-data')
+      .then(res => res.json())
+      .then(data => this.description = data)
+
+    }
     
   }   
 }
