@@ -8,17 +8,18 @@
       </div>
       <div>
         <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
+      <moon-detail v-if="selectedMoon" :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
       </div>
   </div>
 </template>
 
 <script>
-import ListedPlanet from './components/ListedPlanet.vue'
-import PlanetList from './components/PlanetList.vue'
-import PlanetDetail from './components/PlanetDetail.vue'
-import MoonList from './components/MoonList.vue'
+import PlanetList from './components/PlanetList.vue';
+import PlanetDetail from './components/PlanetDetail.vue';
+import MoonList from './components/MoonList.vue';
 
-import { eventBus } from '@/main.js'
+import { eventBus } from '@/main.js';
+import MoonDetails from '@/components/MoonDetails';
 
 
 export default {
@@ -27,17 +28,22 @@ export default {
     'planet-list': PlanetList,
     'moon-list': MoonList,
     'planet-detail': PlanetDetail,
+    'moon-detail': MoonDetails
   },
   data(){
     return {
       planets: [],
       moons: [],
       selectedPlanet: null,
+      selectedMoon: null
     }
   },
   mounted(){
     this.getPlanets()
     eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
+    eventBus.$on('moon-selected', moon => {
+      this.selectedMoon = moon
+      console.log(this.selectedMoon);});
   },
 
   methods: {
@@ -67,8 +73,8 @@ export default {
       }
       
     },
-    
-  }   
+
+  }
 }
 
 

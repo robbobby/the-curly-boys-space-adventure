@@ -8,7 +8,7 @@
                 :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
                 <p> {{planet.englishName}} </p>
-                <p> {{setWidthOfPlanetImage()}} </p>
+                <p> {{ setWidthOfPlanetImage() }} </p>
             </a>
         </div>
     </div>
