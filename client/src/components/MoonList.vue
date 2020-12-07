@@ -32,7 +32,7 @@ export default {
     margin-right: 30px;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 160px;
     text-align: center;
 }
 
@@ -42,6 +42,8 @@ export default {
 ul {
   list-style-type: none;
   padding-inline-start: 0;
+  height: 340px;
+  overflow: scroll;
 }
 
 </style>

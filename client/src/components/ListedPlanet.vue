@@ -1,17 +1,24 @@
 <template>
-    <div class="list-wrapper">
-        
         <div class="listed-planet">
+            <label :id="planet.englishName">
+                <input :id="`${planet.englishName}`" type="radio" name="planet" :value="`${planet.englishName}`" />
+                <img v-on:click="handleClick" 
+                    v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
+                    :title="`${planet.englishName}`" alt="picture of chosen planet" 
+                    :width="setWidthOfPlanetImage()"/>
+            </label>
+
+        </div>
+        <!-- <div class="listed-planet">
 
             <a v-on:click="handleClick" :id="planet.englishName">
                 <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
                 :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
                 <p> {{planet.englishName}} </p>
-                <!-- <p> {{setWidthOfPlanetImage()}} </p> -->
+                <p> {{setWidthOfPlanetImage()}} </p>
             </a>
-        </div>
-    </div>
+        </div> -->
 </template>
 
 <script>
@@ -29,6 +36,10 @@ export default {
         
         handleClick: function() {
             eventBus.$emit('planet-selected', this.planet);
+            if (this.planet === !selectedPlanet) {
+                this.img
+            }
+            
         },
         setWidthOfPlanetImage() {
             let number = (this.planet.meanRadius / 500);
@@ -42,6 +53,24 @@ export default {
 </script>
 
 <style>
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  transform: scale(2, 2);
+    opacity: 100%;
+}
 
 #Saturn img {
     width: 200px;
@@ -49,17 +78,17 @@ export default {
     margin-bottom: -25px;
     margin-left: -42px;
 }
-.listed-planet > a {
+.listed-planet > label {
     width: 110px;
     text-align: center;
 }
-.listed-planet > a > img{
+.listed-planet > label > img{
     width: 100px;
     max-width: 100px;
     opacity: 90%;
     transition-duration: 0.75s;
 }
-.listed-planet > a > img:hover{
+.listed-planet > label > img:hover{
     transition-timing-function: ease;
     transform: scale(2, 2);
     opacity: 100%;
@@ -92,10 +121,6 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
-}
-
-#Earth:onClick {
-    visibility: hidden;
 }
 
 /* #Saturn > img {

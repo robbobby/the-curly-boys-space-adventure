@@ -6,7 +6,7 @@
                 <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" />
             </div>
             <div id="listed-planet-details">
-                <p>This will be the planet description</p>
+                <p style="color:red;">This will be the planet description</p>
                 <h3>Specification:</h3>
                 <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} km</p>
                 <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} miles </p>
@@ -57,6 +57,8 @@ export default {
     padding: 10px;
     box-shadow: 5px 10px rgba(255, 255, 255, 0.342);
     border-radius: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 
 }
 
@@ -69,9 +71,6 @@ export default {
     display: flex;
 
 }
-
-
-
 p {
     font-family: 'VT323', monospace;
     font-size: 2;

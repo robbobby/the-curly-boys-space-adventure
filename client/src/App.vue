@@ -1,21 +1,21 @@
 <template>
   <div id="app">
       <h1>Cosmodex</h1>
-      <h4>By {The Curly Boys}</h4>
+      <h4 contenteditable> By <span style="color: #940000">{</span>The Curly Boys<span style="color: #940000">}</span></h4>
       <div class="main-menu">
-        <button v-on:click="showPlanets = !showPlanets">PLANETS</button>
-        <button v-on:click="showAnimation = !showAnimation">ANIMATION</button>
+        <button class="main-button" v-on:click="showPlanets = !showPlanets">   View Cosmodex <span> </span></button>
+        <button class="main-button" v-on:click="showAnimation = !showAnimation"> Solar System In Action <span> </span></button>
       </div>
-      <div class="planet-animation">
-        <planet-animation :planets="planets" v-show="showAnimation"></planet-animation>
-      </div>
-      <div class="planet-list">
+      <div class="planet-list" v-if="planets.length">
         <planet-list :planets="planets" v-show="showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
       </div>
       <div>
         <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" 
         :getMoons="getMoons()" v-show="showPlanets"></planet-detail>
+      </div>
+      <div class="planet-animation">
+        <planet-animation :planets="planets" v-show="showAnimation"></planet-animation>
       </div>
   </div>
 </template>
@@ -95,37 +95,6 @@ export default {
 
 
 <style>
-h1 {
-  align-content: center;
-  font-family: 'Gugi', cursive;
-  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-  
-
-
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(60deg, blue, white);
-
-}
-
-h4 {
-  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-  border: 0;
-  margin: 0;
-  padding-top: 5px;
-  margin-left: 40px;
-  top: -25px;
-  position: relative;
-  align-content: left;
-  align-content: top;
-  color: white;
-  font-size: 20px;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(100deg, blue, white);
-}
 
 html {
   height: 100%;
@@ -136,7 +105,8 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  height: 100%;
+  height: 920px;
+  overflow: scroll;
   background-color: black;
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
   background-repeat: no-repeat;
@@ -149,6 +119,10 @@ body {
 /* } //  background-image: url("paper.gif"); */
 
 h1 {
+  color: black;
+  text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 30px rgba(255, 255, 255, 0.733);
+  align-content: center;
+  font-family: 'Gugi', cursive;
   position: relative;
   border: 0;
   margin: 0;
@@ -157,9 +131,32 @@ h1 {
   position: relative;
   align-content: left;
   align-content: top;
-  color: white;
   font-size: 100px;
+
+  /* -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(60deg, black, white); */
   
+}
+
+h4 {
+  color: black;
+  text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 20px rgba(255, 255, 255, 0.863);
+  border: 0;
+  margin: 0;
+  padding-top: 5px;
+  margin-left: 40px;
+  top: -25px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  
+  font-size: 20px;
+  /* -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(100deg, blue, white); */
 }
 
 #app {
@@ -184,10 +181,71 @@ h1 {
   /* margin: auto; */
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around;  
+}
 
+.main-menu {
+  margin-left: 30px;
+}
+
+.main-button {
+  padding: 10px;
+  padding-right: 20px;
+  margin: 10px;
+  text-decoration: none;
+  border: none;  
+  border-radius: 4px;
+  transition-duration: 0.1s;
+  cursor: pointer;
+  color: white;
+  background-image: linear-gradient(60deg, black, darkblue, blue, grey, white);
   
   
 }
+
+.main-button:hover {
+  color: crimson;
+  background-color: black;
+  cursor: pointer;
+}
+
+.main-button:active, .main-button:active {
+  color: crimson;
+  border: none;
+  background-color: black;
+}
+
+.main-button span {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  transition: 0.1s;
+}
+
+.main-button span:after {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  content: "Click Me";
+  display: inline;
+  position: relative;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.1s;
+}
+
+.main-button:hover span {
+  padding-right: 15px;
+}
+
+.main-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
   
 </style>
