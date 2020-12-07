@@ -1,13 +1,11 @@
 <template>
-    <div>
-        <h3> Moons ({{ numberOfMoons() }}):</h3>
-      <label> Select a Moon:
-        <select v-model="selectedMoon" @change="moonSelected">
-            <option v-for="moon in getMoons" :key="moon.id" :value="moon" >
-                {{moon.englishName}}
-            </option>
-        </select>
-      </label>
+    <div id="moons-display">
+        <h3 v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):</h3>
+        <ul v-show="showMoons">
+            <li v-for="(moon, index) in getMoons"  v-on:click="moonSelected(moon)" :key="index">
+                <p> {{moon.englishName}} </p>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -19,6 +17,7 @@ export default {
   props: ['getMoons'],
   data() {
     return {
+      showMoons: false,
       showMoonDetail: false,
       selectedMoon: ''
     }
@@ -27,13 +26,31 @@ export default {
     numberOfMoons: function () {
       return Object.keys(this.getMoons).length
     },
-    moonSelected: function () {
-      eventBus.$emit('moon-selected', this.selectedMoon)
+    moonSelected: function (moon) {
+      eventBus.$emit('moon-selected', moon)
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+
+#moons-display {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    text-align: center;
+}
+
+#monns-display > h3 {
+    text-align: center;
+}
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  height: 340px;
+  overflow: scroll;
+}
 
 </style>

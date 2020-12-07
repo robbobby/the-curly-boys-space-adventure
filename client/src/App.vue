@@ -1,25 +1,41 @@
 <template>
   <div id="app">
-      <h1>Cosmodex</h1>
-      <h4>By {The Curly Boys}</h4>
-      <div class="nav">
-      <planet-list :planets="planets"></planet-list>
+    <div class=header>
+      <div class=logo>
+        <h1>Cosmodex</h1>
+        <h4 contenteditable> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
+      </div>
+      <div class="main-menu">
+        <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
+        <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
+      </div>
+    </div>
+      <div class="planet-animation">
+        <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
+      </div>
+      <div class="planet-list" v-if="planets.length">
+        <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
       </div>
       <div>
-        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()"></planet-detail>
-      <moon-detail v-if="selectedMoon" :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
+        <!-- vif -->
+        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions"></planet-detail>
+        <div v-if="showMoon">
+          <moon-detail :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-import PlanetList from './components/PlanetList.vue';
-import PlanetDetail from './components/PlanetDetail.vue';
-import MoonList from './components/MoonList.vue';
-
-import { eventBus } from '@/main.js';
+import PlanetAnimation from './components/PlanetAnimation.vue'
+import ListedPlanet from './components/ListedPlanet.vue'
+import PlanetList from './components/PlanetList.vue'
+import PlanetDetail from './components/PlanetDetail.vue'
+import MoonList from './components/MoonList.vue'
+import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
+import { eventBus } from '@/main.js'
 
 
 export default {
@@ -28,21 +44,33 @@ export default {
     'planet-list': PlanetList,
     'moon-list': MoonList,
     'planet-detail': PlanetDetail,
-    'moon-detail': MoonDetails
+    'planet-animation': PlanetAnimation,
+    'moon-detail': MoonDetails,
   },
   data(){
     return {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      selectedMoon: null
+      selectedMoon: null,
+      descriptions: [],
+      show: null,
+      showPlanets: true,
+      showAnimation: false,
+      showMoon: false
     }
   },
   mounted(){
-    this.getPlanets()
-    eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
+    this.getPlanets();
+    this.getDescriptions();
+    eventBus.$on('planet-selected', planet => {
+        this.selectedPlanet = planet;
+        this.showMoon = false
+      });
+
     eventBus.$on('moon-selected', moon => {
-      this.selectedMoon = moon
+      this.selectedMoon = moon;
+      this.showMoon = true;
       console.log(this.selectedMoon);});
   },
 
@@ -58,68 +86,32 @@ export default {
             if (body.isPlanet && body.gravity >=1) {
               this.planets.push(body)
             }
-            else {
+            else if (!body.isPlanet) {
               this.moons.push(body);
           }
         }}
       });
     },
+
+    // Filters through moon list for the planet?
     getMoons: function(){
       if (this.selectedPlanet.moons) {
       let planetsRel = this.selectedPlanet.moons.map(planetsMoon => planetsMoon.rel); 
       return this.moons.filter(function(moon){
         return planetsRel.indexOf(moon.rel) != -1
         });
+        console.log(this.description);
       }
-      
     },
-
-  }
+    getDescriptions: function(){
+      HubbleServices.getDescriptions()
+      .then(data => this.descriptions = data)
+    }
+  }   
 }
-
-
 </script>
 
-
-
-
-
-
-
-
-
 <style>
-h1 {
-  align-content: center;
-  font-family: 'Gugi', cursive;
-  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-  
-
-
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(60deg, blue, white);
-
-}
-
-h4 {
-  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-  border: 0;
-  margin: 0;
-  padding-top: 5px;
-  margin-left: 40px;
-  top: -25px;
-  position: relative;
-  align-content: left;
-  align-content: top;
-  color: white;
-  font-size: 20px;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(100deg, blue, white);
-}
 
 html {
   height: 100%;
@@ -130,7 +122,8 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  height: 100%;
+  height: 940px;
+  overflow: scroll;
   background-color: black;
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
   background-repeat: no-repeat;
@@ -141,8 +134,16 @@ body {
   align-content: center;
 }
 /* } //  background-image: url("paper.gif"); */
+.header {
+  display: flex;
+  align-items: center;
+}
 
 h1 {
+  color: black;
+  text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 30px rgba(255, 255, 255, 0.733);
+  align-content: center;
+  font-family: 'Gugi', cursive;
   position: relative;
   border: 0;
   margin: 0;
@@ -151,9 +152,32 @@ h1 {
   position: relative;
   align-content: left;
   align-content: top;
-  color: white;
   font-size: 100px;
+
+  /* -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(60deg, black, white); */
   
+}
+
+h4 {
+  color: black;
+  text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 20px rgba(255, 255, 255, 0.863);
+  border: 0;
+  margin: 0;
+  padding-top: 5px;
+  margin-left: 40px;
+  top: -25px;
+  position: relative;
+  align-content: left;
+  align-content: top;
+  
+  font-size: 20px;
+  /* -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: black;
+  background-image: linear-gradient(100deg, blue, white); */
 }
 
 #app {
@@ -168,9 +192,9 @@ h1 {
   margin:auto;
 }
 
-.nav {
+.planet-list {
   margin: 0;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-left: 5%;
   border: 0;
   padding: 0;
@@ -178,18 +202,71 @@ h1 {
   /* margin: auto; */
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around;  
+}
 
+.main-menu {
+  margin-left: 30px;
+}
+
+.main-button {
+  padding: 10px;
+  padding-right: 20px;
+  margin: 10px;
+  text-decoration: none;
+  border: none;  
+  border-radius: 4px;
+  transition-duration: 0.1s;
+  cursor: pointer;
+  color: white;
+  background-image: linear-gradient(60deg, black, darkblue, blue, grey, white);
   
   
 }
-  
 
-#planet-list {
-  display: flex;
-    flex-direction: row;
-      position: relative;
-        justify-content: center;
+.main-button:hover {
+  color: crimson;
+  background-color: black;
+  cursor: pointer;
 }
+
+.main-button:active, .main-button:active {
+  color: crimson;
+  border: none;
+  background-color: black;
+}
+
+.main-button span {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  transition: 0.1s;
+}
+
+.main-button span:after {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  content: "Click Me";
+  display: inline;
+  position: relative;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.1s;
+}
+
+.main-button:hover span {
+  padding-right: 15px;
+}
+
+.main-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
   
 </style>
