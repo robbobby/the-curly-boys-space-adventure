@@ -73,13 +73,8 @@ export default {
 
 #listed-planet-details {
     margin-left: 30px;
-<<<<<<< HEAD
     margin-top: 10px;
     width: 400px;
-=======
-    margin-top: 50px;
-    width: 500px;
->>>>>>> fed211f0421d491ec43cf7070018484e745a948a
 }
 .planet-container {
     display: flex;
