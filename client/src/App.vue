@@ -3,7 +3,7 @@
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
-        <h4 contenteditable> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
+        <h4> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
       </div>
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
