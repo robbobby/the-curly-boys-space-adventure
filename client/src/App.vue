@@ -19,6 +19,10 @@
       </div>
       <div>
         <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+
+        <div v-if="showMoon">
+          <moon-detail :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
+        </div>
       </div>
   </div>
 </template>
@@ -30,6 +34,7 @@ import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
 import HubbleServices from './services/HubbleServices.js'
+import MoonDetails from '@/components/MoonDetails';
 import { eventBus } from '@/main.js'
 
 
@@ -40,22 +45,33 @@ export default {
     'moon-list': MoonList,
     'planet-detail': PlanetDetail,
     'planet-animation': PlanetAnimation,
+    'moon-detail': MoonDetails,
   },
   data(){
     return {
       planets: [],
       moons: [],
       selectedPlanet: null,
+      selectedMoon: null,
       descriptions: [],
       show: null,
       showPlanets: true,
       showAnimation: false,
+      showMoon: false
     }
   },
   mounted(){
     this.getPlanets();
     this.getDescriptions();
-    eventBus.$on('planet-selected', planet => ( this.selectedPlanet = planet));
+    eventBus.$on('planet-selected', planet => {
+        this.selectedPlanet = planet;
+        this.showMoon = false
+      });
+
+    eventBus.$on('moon-selected', moon => {
+      this.selectedMoon = moon;
+      this.showMoon = true;
+      console.log(this.selectedMoon);});
   },
 
   methods: {
@@ -76,6 +92,8 @@ export default {
         }}
       });
     },
+
+    // Filters through moon list for the planet?
     getMoons: function(){
       if (this.selectedPlanet.moons) {
       let planetsRel = this.selectedPlanet.moons.map(planetsMoon => planetsMoon.rel); 
@@ -84,14 +102,10 @@ export default {
         });
         console.log(this.description);
       }
-      
     },
-
     getDescriptions: function(){
       HubbleServices.getDescriptions()
-      
       .then(data => this.descriptions = data)
-
     }
   }   
 }
