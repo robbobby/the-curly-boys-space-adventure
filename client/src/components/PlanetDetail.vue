@@ -50,6 +50,7 @@ export default {
 
 <style>
 #selected-planet {
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

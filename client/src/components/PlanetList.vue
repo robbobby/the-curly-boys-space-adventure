@@ -25,10 +25,4 @@ export default {
 <style>
 
 
-
-/* .planet-list {
-    display: flex;
-    flex-direction: column;
-} */
-
 </style>

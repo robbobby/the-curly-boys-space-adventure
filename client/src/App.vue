@@ -1,21 +1,25 @@
 <template>
   <div id="app">
-      <h1>Cosmodex</h1>
-      <h4 contenteditable> By <span style="color: #940000">{</span>The Curly Boys<span style="color: #940000">}</span></h4>
+    <div class=header>
+      <div class=logo>
+        <h1>Cosmodex</h1>
+        <h4 contenteditable> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
+      </div>
       <div class="main-menu">
-        <button class="main-button" v-on:click="showPlanets = !showPlanets">   View Cosmodex <span> </span></button>
-        <button class="main-button" v-on:click="showAnimation = !showAnimation"> Solar System In Action <span> </span></button>
+        <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
+        <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
+      </div>
+    </div>
+      <div class="planet-animation">
+        <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
       </div>
       <div class="planet-list" v-if="planets.length">
-        <planet-list :planets="planets" v-show="showPlanets"></planet-list>
+        <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
       </div>
       <div>
         <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" 
-        :getMoons="getMoons()" v-show="showPlanets"></planet-detail>
-      </div>
-      <div class="planet-animation">
-        <planet-animation :planets="planets" v-show="showAnimation"></planet-animation>
+        :getMoons="getMoons()" v-show="show === showPlanets"></planet-detail>
       </div>
   </div>
 </template>
@@ -43,8 +47,9 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
+      show: null,
       showPlanets: true,
-      showAnimation: false
+      showAnimation: false,
     }
   },
   mounted(){
@@ -82,17 +87,7 @@ export default {
     
   }   
 }
-
-
 </script>
-
-
-
-
-
-
-
-
 
 <style>
 
@@ -105,7 +100,7 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  height: 920px;
+  height: 940px;
   overflow: scroll;
   background-color: black;
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
@@ -117,6 +112,10 @@ body {
   align-content: center;
 }
 /* } //  background-image: url("paper.gif"); */
+.header {
+  display: flex;
+  align-items: center;
+}
 
 h1 {
   color: black;
@@ -173,7 +172,7 @@ h4 {
 
 .planet-list {
   margin: 0;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-left: 5%;
   border: 0;
   padding: 0;
