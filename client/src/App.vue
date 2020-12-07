@@ -18,7 +18,7 @@
       <!-- // here we are displaying planets -->
       </div>
       <div>
-        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions"></planet-detail>
+        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
       </div>
   </div>
 </template>

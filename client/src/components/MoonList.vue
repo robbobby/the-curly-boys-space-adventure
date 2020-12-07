@@ -42,7 +42,7 @@ export default {
 ul {
   list-style-type: none;
   padding-inline-start: 0;
-  height: 340px;
+  height: 400px;
   overflow: scroll;
 }
 
