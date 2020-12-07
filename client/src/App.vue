@@ -43,8 +43,8 @@ export default {
       planets: [],
       moons: [],
       selectedPlanet: null,
-      showPlanets: false,
-      showAnimation: true
+      showPlanets: true,
+      showAnimation: false
     }
   },
   mounted(){

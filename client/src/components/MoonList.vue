@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="moons-display">
         <h3 v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):</h3>
         <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons" :key="index">
@@ -26,6 +26,22 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#moons-display {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    text-align: center;
+}
+
+#monns-display > h3 {
+    text-align: center;
+}
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
 
 </style>

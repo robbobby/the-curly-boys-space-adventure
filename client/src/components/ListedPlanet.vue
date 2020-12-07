@@ -61,7 +61,7 @@ export default {
 }
 .listed-planet > a > img:hover{
     transition-timing-function: ease;
-    transform: scale(2.5, 2.5);
+    transform: scale(2, 2);
     opacity: 100%;
 }
 
