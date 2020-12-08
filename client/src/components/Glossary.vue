@@ -1,9 +1,10 @@
 <template>
     <div>
-        <div v-for="(description, index) in descriptions" :key="index">
-        <h2> {{description.name}} </h2>
-        <p>{{description.definition}}</p>}
-
+        <select>
+        <option v-for="(description, index) in descriptions" :key="index">
+        {{description.name}} </option>
+        <!-- <p>{{description.definition}}</p>} -->
+        </select>
         </div>
 
     </div>
