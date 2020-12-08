@@ -8,6 +8,8 @@
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
+        <button class="main-button" v-on:click="show = showGlossary"> What Does That Mean?! <span> </span></button>
+
       </div>
     </div>
       <div class="planet-animation">
