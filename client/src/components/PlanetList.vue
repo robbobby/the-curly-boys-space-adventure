@@ -1,8 +1,18 @@
 <template>
     <!-- this should consider the format of each item to be displayed -->
-    <div class="planet-list" v-if="planets.length">
-        <listed-planet v-for="(planet, index) in sortByDistance" :planet="planet" :key="index"/>
+    <div class="view-cosmodex">
+        <div class="filter-buttons">
+            <button class="main-button" v-on:click="compareSize"> Filter Planets by Size <span> </span></button>
+            <button class="main-button" v-on:click="compareDistance"> Filter By Distance from the Sun <span> </span></button>
+        </div>
+        <div class="planet-list" v-if="planets.length">
+        <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index"/>
+        <!-- <listed-planet v-for="(planet, index) in sortBySize" :planet="planet" :key="index"/> -->
+        <!-- <listed-planet v-for="(planet, index) in sortByDensity" :planet="planet" :key="index"/> -->
+        <!-- <listed-planet v-for="(planet, index) in sortByGravity" :planet="planet" :key="index"/> -->
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -13,6 +23,11 @@ export default {
     props: ['planets'],
     components: {
         'listed-planet': ListedPlanet
+    },
+    data() {
+        return {
+            filterPlanets: null
+        }
     },
     computed: {
         sortByDistance: function(){
@@ -27,11 +42,22 @@ export default {
         sortByGravity: function(){
             return this.planet.sort((a, b) => a.gravity - b.gravity);
         }
+    },
+    methods: {
+        compareSize: function(){
+            this.filterPlanets = this.sortBySize;
+        },
+        compareDistance: function(){
+            this.filterPlanets = this.sortByDistance;
+        }
     }
 };
 </script>
 
 <style>
-
-
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 20px 20px 0;
+}
 </style>
