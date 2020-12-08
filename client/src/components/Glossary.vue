@@ -1,16 +1,17 @@
 <template>
     <div>
-        <select v-model="selectedDescription">
-        <option v-for="description in descriptions" :key="description._id">
+        <label>What do you want to learn about?</label>
+>        <select v-model="selectedDescription">
+        <option v-for="description in descriptions" :key="description._id" :value="description">
         {{description.name}} </option>
         </select>
-        <glossary-definition v-if="selectedDescription" :selectedDescription="selectedDescription"></glossary-definition>
+        <glossary-item v-if="selectedDescription" :selectedDescription="selectedDescription"></glossary-item>
         
     </div>
 </template>
 <script>
 
-import GlossaryDefinition from './GlossaryDefinition.vue';
+import GlossaryItem from './GlossaryItem.vue'
 
 export default {
     name: 'glossary',
@@ -21,7 +22,7 @@ export default {
     },
     props: ['descriptions'],
     components: {
-        'glossary-definition' : GlossaryDefinition
+        'glossary-item' : GlossaryItem
     }
 
 
