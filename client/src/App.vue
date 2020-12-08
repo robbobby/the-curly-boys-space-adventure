@@ -64,13 +64,18 @@ export default {
     this.getPlanets();
     this.getDescriptions();
     eventBus.$on('planet-selected', planet => {
+      if (this.isSelected !== planet) {
         this.isSelected = planet;
         this.showMoon = false
-      });
+      } else {
+        this.isSelected = null;
+      }
+    });
 
     eventBus.$on('moon-selected', moon => {
       this.selectedMoon = moon;
       this.showMoon = true;
+      this.isSelected = null;
       console.log(this.selectedMoon);});
   },
 

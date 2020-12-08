@@ -5,7 +5,7 @@
       <h2>{{ moon.englishName }}</h2>
     </div>
     <div class="listed-moon-details">
-      <p><b>Orbits</b> {{ isSelected.englishName}}</p>
+      <p><b>Orbits</b> {{ moon.aroundPlanet.planet}}</p>
     <p><b>Mass:</b> {{ moon.mass.massValue}}</p>
 <!--    <p><b>Volume</b>{{ moon.vol.volValue }}</p>-->
     <p><b>Gravity:</b>{{ moon.gravity }}</p>
