@@ -1,19 +1,29 @@
 <template>
     <div>
-        <select>
-        <option v-for="(description, index) in descriptions" :key="index">
+        <select v-model="selectedDescription">
+        <option v-for="description in descriptions" :key="description._id">
         {{description.name}} </option>
-        <!-- <p>{{description.definition}}</p>} -->
         </select>
-        </div>
-
+        <glossary-definition v-if="selectedDescription" :selectedDescription="selectedDescription"></glossary-definition>
+        
     </div>
 </template>
-
 <script>
+
+import GlossaryDefinition from './GlossaryDefinition.vue';
+
 export default {
     name: 'glossary',
-    props: ['descriptions']
+        data(){
+        return {
+            selectedDescription: null
+        }
+    },
+    props: ['descriptions'],
+    components: {
+        'glossary-definition' : GlossaryDefinition
+    }
+
 
 }
 </script>
