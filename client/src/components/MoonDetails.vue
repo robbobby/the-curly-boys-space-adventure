@@ -1,5 +1,6 @@
 <template>
   <div class="selected-moon">
+    <button v-on:click="setMoonShowFalse()">Back To Moon</button>
     <div class="moon-container">
     <div class="moon-label">
       <h2>{{ moon.englishName }}</h2>
@@ -17,9 +18,16 @@
 </template>
 
 <script>
+  import {eventBus} from '@/main';
+
   export default {
     name: 'planet-detail',
-    props: ['moon', 'isSelected']
+    props: ['moon', 'isSelected'],
+    methods: {
+      setMoonShowFalse: function() {
+        eventBus.$emit('set-moon-show-false', false);
+      }
+    }
   }
 </script>
 
