@@ -17,12 +17,12 @@
         <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
       </div>
-      <div>
+      <div v-if="!showMoon">
         <planet-detail v-if="isSelected" :moons="moons" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+      </div>
 
-        <div v-if="showMoon">
-          <moon-detail :moon="selectedMoon" :isSelected="isSelected"></moon-detail>
-        </div>
+      <div v-if="showMoon">
+        <moon-detail :moon="selectedMoon" :isSelected="isSelected"></moon-detail>
       </div>
   </div>
 </template>
@@ -76,7 +76,13 @@ export default {
       this.selectedMoon = moon;
       this.showMoon = true;
       this.isSelected = null;
-      console.log(this.selectedMoon);});
+      console.log(this.selectedMoon);
+      });
+    
+    eventBus.$on('set-moon-show-false', () => {
+      this.showMoon = false;
+    });
+
   },
 
   methods: {
