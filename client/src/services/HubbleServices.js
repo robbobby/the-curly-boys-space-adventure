@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000/hubble-data";
+const baseURL = "http://localhost:3000/api/definitions";
 
 
 export default {
