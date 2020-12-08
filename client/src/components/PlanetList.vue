@@ -16,7 +16,16 @@ export default {
     },
     computed: {
         sortByDistance: function(){
-            return this.planets.sort((a, b) => a.semimajorAxis - b.semimajorAxis );
+            return this.planets.sort((a, b) => a.semimajorAxis - b.semimajorAxis);
+        },
+        sortBySize: function(){
+            return this.planets.sort((a, b) => a.meanRadius - b.meanRadius);
+        },
+        sortByDensity: function(){
+            return this.planet.sort((a, b) => a.density - b.density);
+        },
+        sortByGravity: function(){
+            return this.planet.sort((a, b) => a.gravity - b.gravity);
         }
     }
 };

@@ -3,7 +3,7 @@
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
-        <h4 contenteditable> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
+        <h4> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
       </div>
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
@@ -17,12 +17,12 @@
         <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
       <!-- // here we are displaying planets -->
       </div>
-      <div>
-        <!-- vif -->
-        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions"></planet-detail>
-        <div v-if="showMoon">
-          <moon-detail :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
-        </div>
+      <div v-if="!showMoon">
+        <planet-detail v-if="isSelected" :moons="moons" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+      </div>
+
+      <div v-if="showMoon">
+        <moon-detail :moon="selectedMoon" :isSelected="isSelected"></moon-detail>
       </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
     return {
       planets: [],
       moons: [],
-      selectedPlanet: null,
+      isSelected: null,
       selectedMoon: null,
       descriptions: [],
       show: null,
@@ -64,14 +64,19 @@ export default {
     this.getPlanets();
     this.getDescriptions();
     eventBus.$on('planet-selected', planet => {
-        this.selectedPlanet = planet;
+        this.isSelected = planet;
         this.showMoon = false
       });
 
     eventBus.$on('moon-selected', moon => {
       this.selectedMoon = moon;
       this.showMoon = true;
-      console.log(this.selectedMoon);});
+      console.log(this.selectedMoon);
+    });
+    eventBus.$on('set-moon-show-false', () => {
+      this.showMoon = false;
+    });
+
   },
 
   methods: {
@@ -95,8 +100,8 @@ export default {
 
     // Filters through moon list for the planet?
     getMoons: function(){
-      if (this.selectedPlanet.moons) {
-      let planetsRel = this.selectedPlanet.moons.map(planetsMoon => planetsMoon.rel); 
+      if (this.isSelected.moons) {
+      let planetsRel = this.isSelected.moons.map(planetsMoon => planetsMoon.rel); 
       return this.moons.filter(function(moon){
         return planetsRel.indexOf(moon.rel) != -1
         });

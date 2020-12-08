@@ -1,17 +1,16 @@
 <template>
-    <div id="selected-planet" v-if="planet">
+    <div id="selected-planet" v-if="planet.isPlanet">
         <div class="planet-container">
             <div>
                 <h2>Planet {{planet.englishName}} </h2>
-
-                
                 <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" />
             </div>
             <div id="listed-planet-details">
+                <h5>Description:</h5>
                 <div v-for="(body, index) in descriptions" :key="index">
                 <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
                 </div>
-                <h3>Specification:</h3>
+                <h5>Specification:</h5>
                 <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} km</p>
                 <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} miles </p>
                 <p>Time to Orbit Sun (a year): {{planet.sideralOrbit}} days </p>
@@ -73,7 +72,7 @@ export default {
 
 #listed-planet-details {
     margin-left: 30px;
-    margin-top: 50px;
+    margin-top: 20px;
     width: 500px;
 }
 .planet-container {
@@ -93,8 +92,11 @@ h2 {
     color: white;
     text-align: center;
 }
-
 h3 {
+    color: white;
+    margin-bottom: 0;
+}
+h5 {
     color: white;
     margin-bottom: 0;
 }
