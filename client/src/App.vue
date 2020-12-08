@@ -9,9 +9,15 @@
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
+        <button class="main-button" v-on:click="show = showGlossary"> What Does That Mean?! <span> </span></button>
+
       </div>
     </div>
-    <!-- animation starts here -->
+        <!-- grossary starts here -->
+        <div class="glossary">
+        <glossary :descriptions="descriptions" v-show="show === showGlossary"></glossary>
+      </div>
+      <!-- animation starts here -->
       <div class="planet-animation">
         <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
       </div>
@@ -27,6 +33,7 @@
       <div v-if="showMoon">
         <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
       </div>
+
   </div>
 </template>
 
@@ -38,6 +45,7 @@ import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
 import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
+import Glossary from '@/components/Glossary.vue';
 import { eventBus } from '@/main.js'
 
 
@@ -49,6 +57,7 @@ export default {
     'planet-detail': PlanetDetail,
     'planet-animation': PlanetAnimation,
     'moon-detail': MoonDetails,
+    'glossary' : Glossary
   },
   data(){
     return {
@@ -58,9 +67,10 @@ export default {
       selectedMoon: null,
       descriptions: [],
       show: null,
-      showPlanets: true,
-      showAnimation: false,
-      showMoon: false
+      showPlanets: 1,
+      showAnimation: 2,
+      showMoon: false,
+      showGlossary: 3
     }
   },
   mounted(){
