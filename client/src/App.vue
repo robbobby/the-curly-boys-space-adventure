@@ -71,7 +71,6 @@ export default {
     eventBus.$on('moon-selected', moon => {
       this.selectedMoon = moon;
       this.showMoon = true;
-      console.log(this.selectedMoon);
     });
     eventBus.$on('set-moon-show-false', () => {
       this.showMoon = false;
