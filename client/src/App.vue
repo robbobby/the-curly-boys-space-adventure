@@ -18,10 +18,10 @@
       <!-- // here we are displaying planets -->
       </div>
       <div>
-        <planet-detail v-if="selectedPlanet" :moons="moons" :planet="selectedPlanet" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+        <planet-detail v-if="isSelected" :moons="moons" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
 
         <div v-if="showMoon">
-          <moon-detail :moon="selectedMoon" :selectedPlanet="selectedPlanet"></moon-detail>
+          <moon-detail :moon="selectedMoon" :isSelected="isSelected"></moon-detail>
         </div>
       </div>
   </div>
@@ -51,7 +51,7 @@ export default {
     return {
       planets: [],
       moons: [],
-      selectedPlanet: null,
+      isSelected: null,
       selectedMoon: null,
       descriptions: [],
       show: null,
@@ -64,7 +64,7 @@ export default {
     this.getPlanets();
     this.getDescriptions();
     eventBus.$on('planet-selected', planet => {
-        this.selectedPlanet = planet;
+        this.isSelected = planet;
         this.showMoon = false
       });
 
@@ -95,8 +95,8 @@ export default {
 
     // Filters through moon list for the planet?
     getMoons: function(){
-      if (this.selectedPlanet.moons) {
-      let planetsRel = this.selectedPlanet.moons.map(planetsMoon => planetsMoon.rel); 
+      if (this.isSelected.moons) {
+      let planetsRel = this.isSelected.moons.map(planetsMoon => planetsMoon.rel); 
       return this.moons.filter(function(moon){
         return planetsRel.indexOf(moon.rel) != -1
         });

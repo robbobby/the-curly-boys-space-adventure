@@ -45,6 +45,7 @@ export default {
 
 #monns-display > h3 {
     text-align: center;
+    color: white;
 }
 ul {
   list-style-type: none;
