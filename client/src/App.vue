@@ -22,7 +22,7 @@
       </div>
 
       <div v-if="showMoon">
-        <moon-detail :moon="selectedMoon" :isSelected="isSelected"></moon-detail>
+        <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
       </div>
   </div>
 </template>
@@ -76,11 +76,12 @@ export default {
       this.selectedMoon = moon;
       this.showMoon = true;
       this.isSelected = null;
-      console.log(this.selectedMoon);
       });
     
-    eventBus.$on('set-moon-show-false', () => {
+    eventBus.$on('return-planet', orbitsPlanet => {
+      this.isSelected = this.planets.find(planet => planet.rel === orbitsPlanet);
       this.showMoon = false;
+      
     });
 
   },
@@ -108,8 +109,8 @@ export default {
     getMoons: function(){
       if (this.isSelected.moons) {
       let planetsRel = this.isSelected.moons.map(planetsMoon => planetsMoon.rel); 
-      return this.moons.filter(function(moon){
-        return planetsRel.indexOf(moon.rel) != -1
+      return this.moons.filter(function(moon) {
+        return planetsRel.indexOf(moon.rel) != -1;
         });
         console.log(this.description);
       }

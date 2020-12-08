@@ -2,7 +2,7 @@
   <div>
   <div class="selected-moon">
     <div>
-      <button v-on:click="setMoonShowFalse()" class="main-button">Back To Moon</button>
+      <button v-on:click="returnPlanet(moon)" class="main-button">Back to Planet</button>
       <h2>{{ moon.englishName }}</h2>
       <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />
     </div>
@@ -29,9 +29,10 @@
     name: 'moon-detail',
     props: ['moon', 'isSelected'],
     methods: {
-      setMoonShowFalse: function() {
-        eventBus.$emit('set-moon-show-false', false);
-      }
+      returnPlanet: function (moon){
+      let orbitsPlanet = moon.aroundPlanet.rel;
+      eventBus.$emit('return-planet', orbitsPlanet);
+    },
     }
   }
 </script>
