@@ -12,11 +12,15 @@
 
       </div>
     </div>
+        <div class="glossary">
+        <glossary :descriptions="descriptions" v-show="show === showGlossary"></glossary>
+      </div>
       <div class="planet-animation">
         <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
       </div>
       <div class="planet-list" v-if="planets.length">
         <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
+
       <!-- // here we are displaying planets -->
       </div>
       <div v-if="!showMoon">
@@ -26,6 +30,7 @@
       <div v-if="showMoon">
         <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
       </div>
+
   </div>
 </template>
 
@@ -37,6 +42,7 @@ import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
 import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
+import Glossary from '@/components/Glossary.vue';
 import { eventBus } from '@/main.js'
 
 
@@ -48,6 +54,7 @@ export default {
     'planet-detail': PlanetDetail,
     'planet-animation': PlanetAnimation,
     'moon-detail': MoonDetails,
+    'glossary' : Glossary
   },
   data(){
     return {
@@ -59,7 +66,8 @@ export default {
       show: null,
       showPlanets: true,
       showAnimation: false,
-      showMoon: false
+      showMoon: false,
+      showGlossary: null
     }
   },
   mounted(){
