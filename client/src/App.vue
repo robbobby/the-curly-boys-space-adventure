@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- header starts here -->
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
@@ -10,17 +11,19 @@
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
       </div>
     </div>
+    <!-- animation starts here -->
       <div class="planet-animation">
         <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
       </div>
+      <!-- // list of planets starts here -->
       <div class="planet-list" v-if="planets.length">
         <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
-      <!-- // here we are displaying planets -->
       </div>
+      <!-- planet details starts here -->
       <div v-if="!showMoon">
         <planet-detail v-if="isSelected" :moons="moons" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
       </div>
-
+      <!-- moon details starts here -->
       <div v-if="showMoon">
         <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
       </div>
@@ -118,7 +121,8 @@ export default {
     getDescriptions: function(){
       HubbleServices.getDescriptions()
       .then(data => this.descriptions = data)
-    }
+    },
+    
   }   
 }
 </script>
@@ -148,7 +152,8 @@ body {
 /* } //  background-image: url("paper.gif"); */
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 h1 {
@@ -206,7 +211,7 @@ h4 {
 
 .planet-list {
   margin: 0;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-left: 5%;
   border: 0;
   padding: 0;
@@ -218,7 +223,9 @@ h4 {
 }
 
 .main-menu {
-  margin-left: 30px;
+  display: flex;
+  justify-content: flex-end;
+  /* margin-left: 30px; */
 }
 
 .main-button {
