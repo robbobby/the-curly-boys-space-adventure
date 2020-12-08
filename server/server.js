@@ -1,59 +1,31 @@
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-const fetch = require('node-fetch');
+const parser = require('body-parser');
 const cors = require('cors');
+const MongoClient = require('mongodb').MongoClient;
+const createRouter = require('./helpers/create_router.js')
 
-app.use(cors())
-
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
-
-app.get('/hubble-data', (req, res) => {
-  const url = 'http://hubblesite.org/api/v3/glossary?page=all';
-
-  try {
-  fetch(url)
-    .then(jsonData => jsonData.json())
-    .then(data => res.json(data));
-  } catch (error) {
-    console.error(error);
-
-
-  }  });
-
-app.listen(3000, function() {
-  console.log(`App is listening on port ${this.address().port}`);
-})
-
-  // expected output: ReferenceError: nonExistentFunction is not defined
-  // Note - error messages will vary depending on browser
-
-
-
-
-// const express= require('express');
-// const app = express();
-// const cors = require('cors');
-// // as we dont' have the window's fetch object available in node we use a package node-fetch
 // const fetch = require('node-fetch');
 
-// app.use(cors());
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World')
-// });
+app.use(cors())
+app.use(parser.json())
+
+MongoClient.connect('mongodb://localhost:27017') //  url is only connection to api
+  .then((client) => { // client refers to mongo client line 4
+    const db = client.db('definitions_hub'); // dummy data in seeds.js 
+    const definitionsCollection = db.collection('definitions'); // essentially a collection is a table
+
+    const definitionsRouter = createRouter(definitionsCollection);
+    app.use('/api/definitions', definitionsRouter); 
+    
+    //here comes all our routes
 
 
-// // defining a URL for Hubble API request
-// app.get('/hubble-data', (req, res) => {
-//     const url = 'http://hubblesite.org/api/v3/glossary?page=all';
+  })
+  .catch(console.error); // displays error if db doesnt load
 
-//     fetch(url)
-//     .then(jsonData => jsonData.json())
-//     .then(data => console.log(data));
-
-// });
-
+app.listen(3000, function () {
+  console.log(`Listening on port ${ this.address().port }`);
+});
