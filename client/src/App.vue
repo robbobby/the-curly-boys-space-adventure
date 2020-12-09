@@ -144,8 +144,10 @@ export default {
 <style>
 
 .planet-animation {
-  position: absolute;
-  right: 350px;
+  size: 100%;
+  margin-top: -300px;
+
+  
 }
 
 html {
