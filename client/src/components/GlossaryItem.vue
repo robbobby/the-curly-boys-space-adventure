@@ -18,9 +18,10 @@ export default {
 <style lang='css' scoped>
 
 #selected-description {
+    font-size: 25px;
     margin-top: 30px;
     
-    background-color: RGBA(255, 105, 180, 0.2);
+    background-color: RGBA(255, 105, 180, 0.3);
     box-shadow: 5px 10px rgba(255, 255, 255, 0.342);
     border-radius: 6px;
     
