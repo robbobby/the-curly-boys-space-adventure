@@ -19,14 +19,17 @@ export default {
 
 #selected-description {
     margin-top: 30px;
-
-    background-color: RGBA(255, 105, 180, 0.1);
-    padding: 10px;
+    
+    background-color: RGBA(255, 105, 180, 0.2);
     box-shadow: 5px 10px rgba(255, 255, 255, 0.342);
     border-radius: 6px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-
+    
+    margin:auto;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:30px;
+    width:50%;
 }
 
 </style>

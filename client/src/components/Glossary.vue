@@ -36,6 +36,7 @@ export default {
     color:white;
     padding-right: 5px;
     padding-left: 10px;
+    padding-bottom:20px;
   
 }
 
