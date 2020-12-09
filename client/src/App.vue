@@ -8,7 +8,7 @@
       </div>
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
-        <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
+        <button class="main-button" v-on:click="show = showAnimation;showMoon=false"> Solar System In Action <span> </span></button>
         <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span> </span></button>
       </div>
     </div>
