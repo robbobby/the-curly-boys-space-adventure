@@ -9,7 +9,7 @@
             </div>
  
         <div class="planet-list" v-if="planets.length">
-        <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index"/>
+        <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" />
         </div>
     
     </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {eventBus} from '@/main.js';
 import ListedPlanet from '@/components/ListedPlanet.vue';
 
 export default {
@@ -27,7 +28,7 @@ export default {
     },
     data() {
         return {
-            filterPlanets: null
+            filterPlanets: null,
         }
     },
     computed: {
@@ -46,10 +47,14 @@ export default {
     },
     methods: {
         compareSize: function(){
+            let isActive = false;
             this.filterPlanets = this.sortBySize;
+            eventBus.$emit('planet-by-size', isActive);
         },
         compareDistance: function(){
+            let isActive = true;
             this.filterPlanets = this.sortByDistance;
+            eventBus.$emit('planet-by-size', isActive);
         },
         // compareDensity: function(){
         //     this.filterPlanets = this.sortByDensity;

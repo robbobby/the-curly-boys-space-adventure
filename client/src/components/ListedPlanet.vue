@@ -11,16 +11,6 @@
             </label>
 
         </div>
-        <!-- <div class="listed-planet">
-
-            <a v-on:click="handleClick" :id="planet.englishName">
-                <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
-                :title="`${planet.englishName}`" alt="picture of chosen planet" 
-                    :width="setWidthOfPlanetImage()"/>
-                <p> {{planet.englishName}} </p>
-                <p> {{ setWidthOfPlanetImage() }} </p>
-            </a>
-        </div> -->
 </template>
 
 <script>
@@ -33,17 +23,17 @@ export default {
         return {
             widthOfImage: 70,
             planetChecked: [],
-            isActive: false
+            isActive: true
         }
     },
+    mounted() {
+        eventBus.$on('planet-by-size', activate => {
+            this.isActive = activate;
+        })
+    },
     methods: {
-        
         handleClick: function() {
             eventBus.$emit('planet-selected', this.planet);
-                // this.planetChecked = [];
-                
-
-            
         },
         setWidthOfPlanetImage() {
             let number = (this.planet.meanRadius / 500);
@@ -80,7 +70,11 @@ export default {
     width: 110px;
     text-align: center;
 }
-.listed-planet > label > img{
+.size{
+    opacity: 90%;
+    transition-duration: 0.75s;
+}
+.distance {
     width: 100px;
     max-width: 100px;
     opacity: 90%;
@@ -91,17 +85,6 @@ export default {
     transform: scale(2, 2);
     opacity: 100%;
 }
-
-/* 
-@keyframes size {
-    from {image-: red;}
-    to {background-color: yellow;} */
-
-    /* .listed-planet > a > img {
-    
-    animation-name: size forwards;
-    animation-duration: 4s;
-} */
 
 .planet-list{
 
