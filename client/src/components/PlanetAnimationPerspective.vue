@@ -23,7 +23,7 @@ export default {
 <style>
     .planet,
     .star {
-        margin-top: 180px;
+
         position: absolute;
         width: var(--size);
         height: var(--size);
@@ -31,6 +31,8 @@ export default {
         left: calc(50% - var(--size)/2);
         border-radius: 50%;
     }
+
+    
 
     .sun {
         --size: 100px;

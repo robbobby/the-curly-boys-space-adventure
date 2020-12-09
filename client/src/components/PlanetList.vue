@@ -70,7 +70,8 @@ export default {
 }
 
 .filter-buttons {
-    /* position:absolute; */
+    position:relative;
+    right: 70px;
     display: flex;
     align-items: right;
     margin: 0 20px 20px 0;

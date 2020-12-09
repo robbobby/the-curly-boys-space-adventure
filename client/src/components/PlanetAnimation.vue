@@ -23,8 +23,8 @@ export default {
 <style>
 .planet,
 .star {
-  margin-top: 180px;
-  position: absolute;
+  margin-top: -50px;
+  position: fixed;
   width: var(--size);
   height: var(--size);
   top: calc(50% - var(--size)/2);
@@ -32,10 +32,6 @@ export default {
   border-radius: 50%;
 }
 
-.planet-animation {
-  max-width: 100px;
-  max-height: 400px;
-}
 
 .sun {
   --size: 100px;
@@ -76,6 +72,7 @@ export default {
   --size: 90px;
   image-rendering: high-quality;
   animation: saturn 65s infinite linear;
+  border-radius: 0;
   max-width: 20%;
 }
 .uranus {

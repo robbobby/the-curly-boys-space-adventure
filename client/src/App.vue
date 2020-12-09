@@ -9,7 +9,7 @@
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
-        <button class="main-button" v-on:click="show = showGlossary"> What Does That Mean?! <span> </span></button>
+        <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span> </span></button>
       </div>
     </div>
     <!-- spinning globes here -->
@@ -29,7 +29,7 @@
       <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
     </div>
     <!-- planet details starts here -->
-    <div v-if="!showMoon">
+    <div v-if="show === showPlanets">
       <planet-detail v-if="isSelected" :moons="moons" :planets="planets" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
     </div>
     <!-- moon details starts here -->
@@ -143,6 +143,13 @@ export default {
 
 <style>
 
+.planet-animation {
+
+
+
+  
+}
+
 html {
   height: 100%;
 }
@@ -225,7 +232,7 @@ h4 {
 
 .planet-list {
   margin: 0;
-  /* margin-top: 10px; */
+  /* margin-top: 300px; */
   margin-left: 5%;
   border: 0;
   padding: 0;
@@ -244,7 +251,8 @@ h4 {
 }
 
 .main-button {
-  padding: 10px;
+  width: 300px;
+  padding: 5px;
   padding-right: 20px;
   margin: 10px;
   text-decoration: none;
@@ -285,6 +293,7 @@ h4 {
   width: auto;
   border: none;
   content: "Click Me";
+  text-shadow: 5px 2px 20px rgba(0, 26, 73, 0.404);
   display: inline;
   position: relative;
   opacity: 0;
