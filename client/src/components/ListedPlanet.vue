@@ -64,7 +64,7 @@ export default {
     width: 200px;
     max-width: 200px;
     margin-bottom: -25px;
-    margin-left: -42px;
+    margin-left: -60px;
 }
 .listed-planet > label {
     width: 110px;
@@ -82,26 +82,20 @@ export default {
 }
 .listed-planet > label > img:hover{
     transition-timing-function: ease;
+    /* width: 250px;
+    height: 250px; */
     transform: scale(2, 2);
     opacity: 100%;
 }
 
-.planet-list{
-
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: baseline;
-
-}
 
 .listed-planet {
     color: white;
-    margin: 20px;
+    margin: 10px;
     font-size: 20px;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    
 }
 
 </style>

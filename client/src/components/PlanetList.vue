@@ -2,14 +2,15 @@
     <!-- this should consider the format of each item to be displayed -->
     <div class="view-cosmodex">
         
-            <div class="filter-buttons">
-                <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
-                <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
-                <!-- <button v-on:click="compareDensity" class="main-button"> Filter By Planets by Density <span> </span></button> -->
-            </div>
- 
+        <div class="filter-buttons">
+            <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
+            <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
+            <!-- <button v-on:click="compareDensity" class="main-button"> Filter By Planets by Density <span> </span></button> -->
+        </div>
+        <img id="sun-image" src="../assets/images/Sun.png">
         <div class="planet-list" v-if="planets.length">
-        <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" />
+        
+            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" />
         </div>
     
     </div>
@@ -77,5 +78,11 @@ export default {
     display: flex;
     align-items: right;
     margin: 0 20px 20px 0;
+}
+#sun-image {
+    position: absolute;
+    z-index: -1;
+    margin-top: -750px;
+    margin-left: -1350px;
 }
 </style>

@@ -186,11 +186,6 @@ h1 {
   align-content: top;
   font-size: 100px;
 
-  /* -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(60deg, black, white); */
-  
 }
 
 h4 {
@@ -206,19 +201,13 @@ h4 {
   align-content: top;
   
   font-size: 20px;
-  /* -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-color: black;
-  background-image: linear-gradient(100deg, blue, white); */
+
 }
 
 #app {
   margin: 0;
   padding: 0;
   border: 0;
-  /* display: flex; */
-  /* flex-direction: row;
-  align-items: center; */
   width:90%;
   height: 100%;
   margin:auto;
@@ -226,22 +215,20 @@ h4 {
 
 .planet-list {
   margin: 0;
-  /* margin-top: 300px; */
   margin-left: 5%;
   border: 0;
   padding: 0;
   width: 90%;
-  /* margin: auto; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;  
+  align-items: baseline;
 }
 
 .main-menu {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* margin-left: 30px; */
 }
 
 .main-button {
