@@ -42,9 +42,6 @@ export default {
             let number = (this.planet.meanRadius / 500);
                 return number + 'px'
         },
-        saturnSizeException() {
-
-        }
     }
 }
 </script>
