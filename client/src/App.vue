@@ -9,7 +9,7 @@
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
-        <button class="main-button" v-on:click="show = showGlossary"> What Does That Mean?! <span> </span></button>
+        <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span> </span></button>
       </div>
     </div>
     <!-- spinning globes here -->
@@ -29,7 +29,7 @@
       <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
     </div>
     <!-- planet details starts here -->
-    <div v-if="!showMoon">
+    <div v-if="show === showPlanets">
       <planet-detail v-if="isSelected" :moons="moons" :planets="planets" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
     </div>
     <!-- moon details starts here -->
