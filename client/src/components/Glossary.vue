@@ -1,7 +1,7 @@
 <template>
     <div>
-        <label>What do you want to learn about?</label>
->        <select v-model="selectedDescription">
+        <label>Pick a topic to find out more:</label>
+     <select v-model="selectedDescription">
         <option v-for="description in descriptions" :key="description._id" :value="description">
         {{description.name}} </option>
         </select>
@@ -29,6 +29,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
+label {
+    color:white;
+    padding-right: 5px;
+}
 
 </style>
