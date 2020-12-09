@@ -32,6 +32,8 @@ export default {
         border-radius: 50%;
     }
 
+    
+
     .sun {
         --size: 100px;
         background: linear-gradient(45deg, goldenrod, yellow);

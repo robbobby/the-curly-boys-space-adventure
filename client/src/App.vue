@@ -143,6 +143,11 @@ export default {
 
 <style>
 
+.planet-animation {
+  position: absolute;
+  right: 350px;
+}
+
 html {
   height: 100%;
 }
