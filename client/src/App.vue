@@ -10,34 +10,38 @@
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation"> Solar System In Action <span> </span></button>
         <button class="main-button" v-on:click="show = showGlossary"> What Does That Mean?! <span> </span></button>
-
       </div>
     </div>
-        <!-- grossary starts here -->
-        <div class="glossary">
-        <glossary :descriptions="descriptions" v-show="show === showGlossary"></glossary>
-      </div>
-      <!-- animation starts here -->
-      <div class="planet-animation">
-        <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
-      </div>
-      <!-- // list of planets starts here -->
-      <div class="planet-list" v-if="planets.length">
-        <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
-      </div>
-      <!-- planet details starts here -->
-      <div v-if="!showMoon">
-        <planet-detail v-if="isSelected" :moons="moons" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
-      </div>
-      <!-- moon details starts here -->
-      <div v-if="showMoon">
-        <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
-      </div>
+    <!-- spinning globes here -->
+    <div class="spinning-globes">
+      
+    </div>
+      <!-- grossary starts here -->
+    <div class="glossary">
+      <glossary :descriptions="descriptions" v-show="show === showGlossary"></glossary>
+    </div>
+    <!-- animation starts here -->
+    <div class="planet-animation">
+      <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
+    </div>
+    <!-- // list of planets starts here -->
+    <div class="planet-list" v-if="planets.length">
+      <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
+    </div>
+    <!-- planet details starts here -->
+    <div v-if="!showMoon">
+      <planet-detail v-if="isSelected" :moons="moons" :planets="planets" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+    </div>
+    <!-- moon details starts here -->
+    <div v-if="showMoon">
+      <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
+    </div>
 
   </div>
 </template>
 
 <script>
+
 import PlanetAnimation from './components/PlanetAnimation.vue'
 import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
@@ -57,7 +61,7 @@ export default {
     'planet-detail': PlanetDetail,
     'planet-animation': PlanetAnimation,
     'moon-detail': MoonDetails,
-    'glossary' : Glossary
+    'glossary' : Glossary,
   },
   data(){
     return {
