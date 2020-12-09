@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="glossary_item">
         <label>Pick a topic to find out more:</label>
      <select v-model="selectedDescription">
         <option v-for="description in descriptions" :key="description._id" :value="description">
@@ -30,9 +30,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-label {
+.glossary_item {
+    position: relative;
+    top:50px;
     color:white;
     padding-right: 5px;
+    padding-left: 10px;
+  
 }
 
 </style>
