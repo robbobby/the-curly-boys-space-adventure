@@ -14,9 +14,6 @@
         
         <div class="planet-list" v-if="planets.length">
         <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index"/>
-        <!-- <listed-planet v-for="(planet, index) in sortBySize" :planet="planet" :key="index"/> -->
-        <!-- <listed-planet v-for="(planet, index) in sortByDensity" :planet="planet" :key="index"/> -->
-        <!-- <listed-planet v-for="(planet, index) in sortByGravity" :planet="planet" :key="index"/> -->
         </div>
     
     </div>
