@@ -1,8 +1,9 @@
 <template>
         <div class="listed-planet">
             <label :id="planet.englishName">
-                <input :id="`${planet.englishName}`" type="radio" name="planet" :value="`${planet.englishName}`" />
-                <img v-on:click="handleClick" 
+                <input :id="`${planet.englishName}`" type="checkbox"  
+                :value="`${planet.englishName}`" v-model="planetChecked" v-on:click="handleClick()"/>
+                <img  
                     v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
                     :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
@@ -30,25 +31,29 @@ export default {
     data() {
         return {
             widthOfImage: 70,
+            planetChecked: []
         }
     },
     methods: {
         
         handleClick: function() {
             eventBus.$emit('planet-selected', this.planet);
+                // this.planetChecked = [];
+                
+
             
         },
         setWidthOfPlanetImage() {
             let number = (this.planet.meanRadius / 500);
                 return number + 'px'
         },
-    }
+    },
 }
 </script>
 
 <style>
 /* HIDE RADIO */
-[type=radio] { 
+[type=checkbox] { 
   position: absolute;
   opacity: 0;
   width: 0;
@@ -56,15 +61,12 @@ export default {
 }
 
 /* IMAGE STYLES */
-[type=radio] + img {
+[type=checkbox] + img {
   cursor: pointer;
 }
 
 /* CHECKED STYLES */
-[type=radio]:checked + img {
-  transform: scale(2, 2);
-    opacity: 100%;
-}
+
 
 #Saturn img {
     width: 200px;
