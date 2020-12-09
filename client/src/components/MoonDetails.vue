@@ -10,11 +10,16 @@
     <div class="moon-label">
     </div>
     <div class="listed-moon-details">
-      <p><b>Orbits</b> {{ moon.aroundPlanet.planet}}</p>
-    <p><b>Mass:</b> {{ moon.mass.massValue}}</p>
+      <p>Orbits: {{ showAroundPlanet(moon) }}</p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} km</p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} miles </p>
+    <p>Time to Orbit the Planet: {{moon.sideralOrbit}} days </p>
+    <p>Time to Spin on Axis (a day): {{Math.round(moon.sideralRotation)}} hours </p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} km </p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} miles </p>
+    <p>Gravity: {{ moon.gravity }}m/s² </p>
+    <p>Mass: {{ moon.mass.massValue}}</p>
 <!--    <p><b>Volume</b>{{ moon.vol.volValue }}</p>-->
-    <p><b>Gravity:</b>{{ moon.gravity }}</p>
-    <p><b>Size</b>{{ moon.meanRadius }}</p>
     </div>
   </div>
   </div>
@@ -27,13 +32,26 @@
 
   export default {
     name: 'moon-detail',
-    props: ['moon', 'isSelected'],
+    props: ['moon', 'isSelected', 'planets'],
+    data() {
+        return {
+            convertDistance: true
+        }
+    },
     methods: {
       returnPlanet: function (moon){
-      let orbitsPlanet = moon.aroundPlanet.rel;
-      eventBus.$emit('return-planet', orbitsPlanet);
+        let orbitsPlanet = moon.aroundPlanet.rel;
+        eventBus.$emit('return-planet', orbitsPlanet);
+      },
+      showAroundPlanet: function (moon){
+        let orbitsPlanetRel = moon.aroundPlanet.rel;
+        let orbitsPlanet = this.planets.find(planet => planet.rel === orbitsPlanetRel);
+        return orbitsPlanet.englishName;
+      },
+      milesConvertor: function(number){
+            return Math.round(number/ 1.609)
+        }
     },
-    }
   }
 </script>
 
