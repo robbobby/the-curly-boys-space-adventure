@@ -72,6 +72,7 @@ export default {
   --size: 90px;
   image-rendering: high-quality;
   animation: saturn 65s infinite linear;
+  border-radius: 0;
   max-width: 20%;
 }
 .uranus {
