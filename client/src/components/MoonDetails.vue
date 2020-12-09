@@ -11,12 +11,12 @@
     </div>
     <div class="listed-moon-details">
       <p>Orbits: {{ showAroundPlanet(moon) }}</p>
-    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} km</p>
-    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} miles </p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} <span class="metric">km</span></p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} <span class="metric">miles</span></p>
     <p>Time to Orbit the Planet: {{moon.sideralOrbit}} days </p>
     <p>Time to Spin on Axis (a day): {{Math.round(moon.sideralRotation)}} hours </p>
-    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} km </p>
-    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} miles </p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} <span class="metric">km</span></p>
+    <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} <span class="metric">miles</span></p>
     <p>Gravity: {{ moon.gravity }}m/s² </p>
     <!-- <p>Mass: {{ moon.mass.massValue}}</p> -->
 <!--    <p><b>Volume</b>{{ moon.vol.volValue }}</p>-->
@@ -87,63 +87,5 @@
   margin-top: 20px;
   width: 500px;
 }
-/* 
-.main-button {
-  padding: 10px;
-  padding-right: 20px;
-  margin: 10px;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  transition-duration: 0.1s;
-  cursor: pointer;
-  color: white;
-  background-image: linear-gradient(60deg, black, darkblue, blue, grey, white);
 
-
-}
-
-.main-button:hover {
-  color: crimson;
-  background-color: black;
-  cursor: pointer;
-}
-
-.main-button:active, .main-button:active {
-  color: crimson;
-  border: none;
-  background-color: black;
-}
-
-.main-button span {
-  color: rgb(192, 17, 52);
-  width: auto;
-  border: none;
-  cursor: pointer;
-  display: inline;
-  position: relative;
-  transition: 0.1s;
-}
-
-.main-button span:after {
-  color: rgb(192, 17, 52);
-  width: auto;
-  border: none;
-  content: "Click Me";
-  display: inline;
-  position: relative;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.1s;
-}
-
-.main-button:hover span {
-  padding-right: 15px;
-}
-
-.main-button:hover span:after {
-  opacity: 1;
-  right: 0;
-} */
 </style>

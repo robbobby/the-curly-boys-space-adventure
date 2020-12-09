@@ -262,11 +262,11 @@ h4 {
 
 .main-button:hover {
   color: crimson;
-  background-color: black;
   cursor: pointer;
+  background-color: black;
 }
 
-.main-button:active, .main-button:active {
+.main-button:active {
   color: crimson;
   border: none;
   background-color: black;
