@@ -62,7 +62,7 @@
   margin-top: 20px;
   width: 500px;
 }
-
+/* 
 .main-button {
   padding: 10px;
   padding-right: 20px;
@@ -120,5 +120,5 @@
 .main-button:hover span:after {
   opacity: 1;
   right: 0;
-}
+} */
 </style>

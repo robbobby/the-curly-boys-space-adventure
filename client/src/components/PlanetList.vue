@@ -1,16 +1,23 @@
 <template>
     <!-- this should consider the format of each item to be displayed -->
+   
+    
     <div class="view-cosmodex">
-        <div class="filter-buttons">
-            <button class="main-button" v-on:click="compareSize"> Filter Planets by Size <span> </span></button>
-            <button class="main-button" v-on:click="compareDistance"> Filter By Distance from the Sun <span> </span></button>
-        </div>
+        
+            <div class="filter-buttons">
+                <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
+                <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
+            </div>
+        
+        
+        
         <div class="planet-list" v-if="planets.length">
         <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index"/>
         <!-- <listed-planet v-for="(planet, index) in sortBySize" :planet="planet" :key="index"/> -->
         <!-- <listed-planet v-for="(planet, index) in sortByDensity" :planet="planet" :key="index"/> -->
         <!-- <listed-planet v-for="(planet, index) in sortByGravity" :planet="planet" :key="index"/> -->
         </div>
+    
     </div>
     
 </template>
@@ -55,9 +62,17 @@ export default {
 </script>
 
 <style>
-.filter-buttons {
+
+.view-cosmodex {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+}
+
+.filter-buttons {
+    /* position:absolute; */
+    display: flex;
+    align-items: right;
     margin: 0 20px 20px 0;
 }
 </style>

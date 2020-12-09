@@ -234,6 +234,7 @@ h4 {
 
 .main-menu {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   /* margin-left: 30px; */
 }
