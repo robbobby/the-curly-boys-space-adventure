@@ -3,7 +3,7 @@
   <div class="selected-moon">
     <div>
       <button v-on:click="returnPlanet(moon)" class="main-button">Back to Planet</button>
-      <h2>{{ moon.englishName }}</h2>
+      <h2>{{ moonName(moon) }}</h2>
       <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />
     </div>
     <div class="moon-container">
@@ -18,7 +18,7 @@
     <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} km </p>
     <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} miles </p>
     <p>Gravity: {{ moon.gravity }}m/s² </p>
-    <p>Mass: {{ moon.mass.massValue}}</p>
+    <!-- <p>Mass: {{ moon.mass.massValue}}</p> -->
 <!--    <p><b>Volume</b>{{ moon.vol.volValue }}</p>-->
     </div>
   </div>
@@ -39,6 +39,13 @@
         }
     },
     methods: {
+      moonName: function(moon){
+        if (moon.englishName !== "") {
+          return moon.englishName
+        } else {
+          return moon.name
+        }
+      },
       returnPlanet: function (moon){
         let orbitsPlanet = moon.aroundPlanet.rel;
         eventBus.$emit('return-planet', orbitsPlanet);

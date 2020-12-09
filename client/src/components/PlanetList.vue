@@ -7,6 +7,7 @@
             <div class="filter-buttons">
                 <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
                 <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
+                <!-- <button v-on:click="compareDensity" class="main-button"> Filter By Planets by Density <span> </span></button> -->
             </div>
         
         
@@ -43,12 +44,12 @@ export default {
         sortBySize: function(){
             return this.planets.sort((a, b) => a.meanRadius - b.meanRadius);
         },
-        sortByDensity: function(){
-            return this.planet.sort((a, b) => a.density - b.density);
-        },
-        sortByGravity: function(){
-            return this.planet.sort((a, b) => a.gravity - b.gravity);
-        }
+        // sortByDensity: function(){
+        //     return this.planet.sort((a, b) => a.density - b.density);
+        // },
+        // sortByGravity: function(){
+        //     return this.planet.sort((a, b) => a.gravity - b.gravity);
+        // }
     },
     methods: {
         compareSize: function(){
@@ -56,7 +57,10 @@ export default {
         },
         compareDistance: function(){
             this.filterPlanets = this.sortByDistance;
-        }
+        },
+        // compareDensity: function(){
+        //     this.filterPlanets = this.sortByDensity;
+        // }
     }
 };
 </script>

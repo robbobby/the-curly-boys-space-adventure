@@ -3,7 +3,7 @@
         <button id="moons-button" class="main-button" v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):        <span>       </span></button>
         <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons"  v-on:click="moonSelected(moon)" :key="index">
-                <p> {{moon.englishName}} </p>
+                <button class="moons-button"> {{moonName(moon)}} </button>
             </li>
         </ul>
     </div>
@@ -23,6 +23,13 @@ export default {
     }
   },
   methods: {
+    moonName: function(moon){
+        if (moon.englishName !== "") {
+          return moon.englishName
+        } else {
+          return moon.name
+        }
+      },
     numberOfMoons: function () {
       return Object.keys(this.getMoons).length
     },
@@ -71,6 +78,20 @@ export default {
 #moons-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+.moons-button {
+  width: 140px;
+  padding: 5px;
+  padding-right: 20px;
+  margin: 10px;
+  text-decoration: none;
+  border: none;  
+  border-radius: 4px;
+  transition-duration: 0.1s;
+  cursor: pointer;
+  color: white;
+  background-image: linear-gradient(60deg, black, darkblue, blue, grey, white);
+  
 }
 
 

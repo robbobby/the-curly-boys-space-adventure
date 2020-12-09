@@ -6,6 +6,7 @@
         <h1>Cosmodex</h1>
         <h4> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
       </div>
+      <!-- main buttons here -->
       <div class="main-menu">
         <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
         <button class="main-button" v-on:click="show = showAnimation;showMoon=false"> Solar System In Action <span> </span></button>
@@ -142,13 +143,6 @@ export default {
 </script>
 
 <style>
-
-.planet-animation {
-
-
-
-  
-}
 
 html {
   height: 100%;
