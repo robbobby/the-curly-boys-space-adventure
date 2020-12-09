@@ -3,7 +3,8 @@
             <label :id="planet.englishName">
                 <input :id="`${planet.englishName}`" type="checkbox"  
                 :value="`${planet.englishName}`" v-model="planetChecked" v-on:click="handleClick()"/>
-                <img  
+                <img
+                    v-bind:class="[isActive ? 'distance' : 'size']"
                     v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
                     :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
@@ -31,7 +32,8 @@ export default {
     data() {
         return {
             widthOfImage: 70,
-            planetChecked: []
+            planetChecked: [],
+            isActive: false
         }
     },
     methods: {

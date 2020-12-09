@@ -4,7 +4,7 @@
         <div class="custom_select">
             
      <select v-model="selectedDescription">
-        =<option disabled value="">select</option>
+        =<option disabled value="">Pick a topic to find out more:</option>
         <option v-for="description in descriptions" :key="description._id" :value="description">
 
         {{description.name}} </option>
@@ -40,16 +40,22 @@ export default {
 <style lang="css" scoped>
 select{
         width: 220px;
-        height: 50px;
+        height: 45px;
         border: 1px solid #999;
         font-size: 15px;
-        color: #000000;
+        color: white;
         background-color: #eee;
-        border-radius: 5px;
-        box-shadow: 4px 4px #ccc;
+        border-radius: 10px;
+        border-style: groove;
+        border-width: 5px;
+        /* box-shadow: 4px 4px #ccc; */
         margin-bottom:40px;
-
+        background-image: linear-gradient(60deg, black, darkblue, blue, grey, white);
 }
+select:hover{
+    color: crimson;
+    cursor: pointer;
+    }
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -65,6 +71,7 @@ select{
 }
 .glossary_item {
     position: relative;
+    text-align: center;
     top:50px;
     color:white;
     padding-right: 5px;

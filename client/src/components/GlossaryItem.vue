@@ -20,17 +20,21 @@ export default {
 #selected-description {
     font-size: 25px;
     margin-top: 30px;
-    
-    background-color: RGBA(255, 105, 180, 0.3);
+    background-color: RGBA(255, 105, 180, 0.1);
     box-shadow: 5px 10px rgba(255, 255, 255, 0.342);
     border-radius: 6px;
     
     margin:auto;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top:30px;
+    padding: 30px;
     width:50%;
+
+    /* margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 10px; */
 }
 
 </style>
