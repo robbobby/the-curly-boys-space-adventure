@@ -1,6 +1,6 @@
 <template>
     <div id="moons-display">
-        <h3 v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):</h3>
+        <button id="moons-button" class="main-button" v-on:click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):        <span>       </span></button>
         <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons"  v-on:click="moonSelected(moon)" :key="index">
                 <p> {{moon.englishName}} </p>
@@ -34,6 +34,45 @@ export default {
 </script>
 
 <style scoped>
+
+#moons-button {
+  position: relative;
+  right: 120px;
+}
+
+#moons-button span {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  transition: 0.1s;
+}
+
+#moons-button span:after {
+  color: rgb(192, 17, 52);
+  width: auto;
+  border: none;
+  content: "       Click Me";
+  text-shadow: 5px 2px 20px rgba(0, 26, 73, 0.404);
+  display: inline;
+  position: relative;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.1s;
+}
+
+#moons-button:hover span {
+  padding-right: 15px;
+}
+
+#moons-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 
 #moons-display {
     margin-right: 30px;

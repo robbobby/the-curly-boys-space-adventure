@@ -144,8 +144,8 @@ export default {
 <style>
 
 .planet-animation {
-  size: 100%;
-  margin-top: -300px;
+
+
 
   
 }
@@ -232,7 +232,7 @@ h4 {
 
 .planet-list {
   margin: 0;
-  /* margin-top: 10px; */
+  /* margin-top: 300px; */
   margin-left: 5%;
   border: 0;
   padding: 0;
@@ -251,7 +251,8 @@ h4 {
 }
 
 .main-button {
-  padding: 10px;
+  width: 300px;
+  padding: 5px;
   padding-right: 20px;
   margin: 10px;
   text-decoration: none;
@@ -292,6 +293,7 @@ h4 {
   width: auto;
   border: none;
   content: "Click Me";
+  text-shadow: 5px 2px 20px rgba(0, 26, 73, 0.404);
   display: inline;
   position: relative;
   opacity: 0;
