@@ -3,12 +3,13 @@
         <div class="planet-container">
             <div>
                 <h2>Planet {{planet.englishName}} </h2>
-                <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" />
+                <spinning-globes :planet="planet"></spinning-globes>
+                <!-- <img v-bind:src="require(`../assets/images/${planet.englishName}.png`)" title="picture" alt="picture of chosen planet" height="300px" /> -->
             </div>
             <div id="listed-planet-details">
                 <h5>Description:</h5>
                 <div v-for="(body, index) in descriptions" :key="index">
-                <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
+                    <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
                 </div>
                 <h5>Specification:</h5>
                 <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} km</p>
@@ -31,12 +32,13 @@
 <script>
 import MoonList from './MoonList.vue'
 import PlanetDescriptionList from './PlanetDescriptionList.vue'
+import SpinningGlobes from './SpinningGlobes.vue'
 
 
 
 export default {
     name: 'planet-detail',
-    props: ['planet', 'getMoons', 'moons', 'descriptions'],
+    props: ['planet', 'getMoons', 'moons', 'descriptions', 'planets'],
     data() {
         return {
             convertDistance: true
@@ -44,7 +46,8 @@ export default {
     },
     components: {
         'moon-list': MoonList,
-        'planet-description-list': PlanetDescriptionList
+        'planet-description-list': PlanetDescriptionList,
+        'spinning-globes': SpinningGlobes
     },
     methods: {
         milesConvertor: function(number){
