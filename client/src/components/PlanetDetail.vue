@@ -78,7 +78,7 @@ export default {
 }
 .planet-container {
     display: flex;
-
+    z-index: 1;
 }
 p {
     font-family: 'VT323', monospace;

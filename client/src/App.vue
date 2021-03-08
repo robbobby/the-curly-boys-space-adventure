@@ -163,12 +163,17 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
+  z-index: -2;
 }
 /* } //  background-image: url("paper.gif"); */
 .header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+}
+
+.logo {
+  z-index: 1;
 }
 
 h1 {

@@ -78,10 +78,11 @@ export default {
     display: flex;
     align-items: right;
     margin: 0 20px 20px 0;
+    z-index: 1;
 }
 #sun-image {
     position: absolute;
-    z-index: -1;
+    /* z-index: -1; */
     margin-top: -750px;
     margin-left: -1350px;
 }
