@@ -130,7 +130,6 @@ export default {
       return this.moons.filter(function(moon) {
         return planetsRel.indexOf(moon.rel) != -1;
         });
-        console.log(this.description);
       }
     },
     getDescriptions: function(){
