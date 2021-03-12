@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="selected-moon">
-    <div>
+    <div class="moon-title-container">
       <button v-on:click="returnPlanet(moon)" class="main-button">Back to Planet</button>
       <h2>{{ moonName(moon) }}</h2>
       <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />
@@ -74,6 +74,7 @@
     border-radius: 6px;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    /* z-index: 1; */
 }
 
 .moon-container {
@@ -86,6 +87,9 @@
   margin-left: 30px;
   margin-top: 20px;
   width: 500px;
+}
+.moon-title-container{
+  z-index: 2;
 }
 
 </style>

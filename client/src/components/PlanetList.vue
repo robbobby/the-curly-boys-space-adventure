@@ -82,7 +82,7 @@ export default {
 }
 #sun-image {
     position: absolute;
-    /* z-index: -1; */
+    z-index: 0;
     margin-top: -750px;
     margin-left: -1350px;
 }
